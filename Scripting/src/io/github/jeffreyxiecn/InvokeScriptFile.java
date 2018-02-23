@@ -34,17 +34,19 @@ public class InvokeScriptFile {
     int x = 3;
     int y = 4;
 
-    for (int i = 0; i < 600; i++){
+    for (int i = 0; i < 1200; i++){
 	    Object addResult = inv.invokeMethod(calculator, "add", x, y);
 	    Object subResult = inv.invokeMethod(calculator, "subtract", x, y);
 	    Object mulResult = inv.invokeMethod(calculator, "multiply", x, y);
 	    Object divResult = inv.invokeMethod(calculator, "divide", x, y);
+	    Object sumResult = inv.invokeMethod(calculator, "sum", 50000000);
 
 	    System.out.println(addResult);
 	    System.out.println(subResult);
 	    System.out.println(mulResult);
 	    System.out.println(divResult);
-	    Thread.sleep(1000);
+	    System.out.println(sumResult);
+	    Thread.sleep(5);
     }
 
     //Object triggerException = inv.invokeMethod(calculator, "nonexist", x, y);
