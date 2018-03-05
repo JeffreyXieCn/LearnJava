@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn;
+package io.github.jeffreyxiecn.scripting;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -20,7 +20,7 @@ public class InvokeScriptFile {
     }
 
     Invocable inv = (Invocable) engine;
-    String scriptPath = "src\\io\\github\\jeffreyxiecn\\calculator.js";
+    String scriptPath = "src\\io\\github\\jeffreyxiecn\\scripting\\calculator.js";
     //String scriptPath = "calculator.js";
     //URL fileUrl = getClass().getResource(scriptPath);
 

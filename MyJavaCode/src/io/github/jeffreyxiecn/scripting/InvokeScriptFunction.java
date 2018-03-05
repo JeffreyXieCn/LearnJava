@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn;
+package io.github.jeffreyxiecn.scripting;
 
 import javax.script.*;
 
