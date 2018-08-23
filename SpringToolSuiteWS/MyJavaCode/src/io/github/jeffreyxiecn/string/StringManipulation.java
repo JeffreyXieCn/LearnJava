@@ -1,5 +1,6 @@
 package io.github.jeffreyxiecn.string;
 
+import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -34,6 +35,14 @@ public class StringManipulation {
 		result = firstNonRepeatingChar2(str2);
 		if(result == 0) {
 			System.out.println("No character in " + str2 + " is non-repeated");
+		}
+		
+		ByteOrder byteOrder = ByteOrder.nativeOrder();
+		if(byteOrder.equals(ByteOrder.LITTLE_ENDIAN)) {
+			System.out.println("This JVM is running on little_endian platform");
+		}
+		else {
+			System.out.println("This JVM is running on big_endian platform");
 		}
 	}
 	
