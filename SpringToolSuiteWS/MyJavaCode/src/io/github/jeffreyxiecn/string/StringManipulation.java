@@ -2,7 +2,11 @@ package io.github.jeffreyxiecn.string;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.IntStream;
 
 public class StringManipulation {
@@ -12,7 +16,25 @@ public class StringManipulation {
 		System.out.println(reverseWords(str));
 		System.out.println(reverseWords2(str));
 		System.out.println(reverseWords3(str));
-
+		
+		String str2 = "ABCDBAGHC";
+		System.out.println(firstNonRepeatingChar(str2));
+		System.out.println(firstNonRepeatingChar2(str2));
+		
+		str2 = "1230321";
+		System.out.println(firstNonRepeatingChar(str2));
+		System.out.println(firstNonRepeatingChar2(str2));
+		
+		str2 = "ABCHBAGHCG";
+		char result = firstNonRepeatingChar(str2);
+		if(result == 0) {
+			System.out.println("No character in " + str2 + " is non-repeated");
+		}
+		
+		result = firstNonRepeatingChar2(str2);
+		if(result == 0) {
+			System.out.println("No character in " + str2 + " is non-repeated");
+		}
 	}
 	
 	public static String reverseWords(String original) {
@@ -50,6 +72,64 @@ public class StringManipulation {
 	
 	public static Object[] invertUsingStreams(Object[] array) {
 		return IntStream.rangeClosed(1, array.length).mapToObj(i -> array[array.length - i]).toArray();
+	}
+	
+	/**
+	 * Given a string, find first non-repeating character in it by doing only one traversal of it.
+	//
+	//For example,
+	//
+	//
+	//Input:
+	//string is ABCDBAGHC
+	//
+	//Output:
+	//The first non-repeating character in the string is D
+	 * @param str
+	 * @return
+	 */
+	public static char firstNonRepeatingChar(String str) {
+		LinkedHashMap<Character, Integer> charCount = new LinkedHashMap<>();
+		for(int i = 0; i < str.length(); i++) {
+			char curChar = str.charAt(i);
+			Integer count = charCount.get(curChar);
+			if(count == null) {
+				charCount.put(curChar, 1);
+			}
+			else {
+				charCount.put(curChar, count + 1);
+			}
+		}
+		
+		Iterator<Entry<Character, Integer>> iterator = charCount.entrySet().iterator();
+		while(iterator.hasNext()) {
+			Entry<Character, Integer> curEntry = iterator.next();
+			if(curEntry.getValue() == 1) {
+				return curEntry.getKey();
+			}
+		}
+		
+		return 0;		
+	}
+	
+	public static char firstNonRepeatingChar2(String s) {
+		Map<Character, Boolean> m = new LinkedHashMap<>();
+		for(char c : s.toCharArray()) {
+			if(m.containsKey(c)) {
+				m.put(c, true);
+			}
+			else {
+				m.put(c, false);
+			}
+		}
+		
+		for(Map.Entry<Character, Boolean> e : m.entrySet()) {
+			if(!e.getValue()) {
+				return e.getKey();
+			}
+		}
+		
+		return 0;
 	}
 
 }
