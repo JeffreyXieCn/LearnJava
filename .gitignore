@@ -73,3 +73,9 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+# PMD files
+.pmd
+
+# Checkstyle files
+.checkstyle

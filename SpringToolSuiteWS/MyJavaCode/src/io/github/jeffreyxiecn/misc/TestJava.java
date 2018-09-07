@@ -17,264 +17,271 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/** */
 
-/**
- *
- */
-
-/**
- * @author ewenxie
- *
- */
+/** @author ewenxie */
 public class TestJava {
 
-	protected static String timestamp = null;
+  protected static String timestamp = null;
 
-	public static Vector<String> localComponentInfoVector;
-	//private final static Pattern HOST_PATTERN = Pattern.compile("^(.*)-[bot]$"); //valid to MiO
-	private final static Pattern HOST_PATTERN = Pattern.compile("^(.*?)\\..*"); //use this (non-greedy) pattern since the beginning of vMIO
+  public static Vector<String> localComponentInfoVector;
+  // private final static Pattern HOST_PATTERN = Pattern.compile("^(.*)-[bot]$"); //valid to MiO
+  private static final Pattern HOST_PATTERN =
+      Pattern.compile("^(.*?)\\..*"); // use this (non-greedy) pattern since the beginning of vMIO
 
-	private static SimpleDateFormat formatter = null;
-	static {
-		formatter = new SimpleDateFormat("yyyyMMddHHmm");
-		formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
-	}
+  private static SimpleDateFormat formatter = null;
 
-	protected static String getNowTimestamp() {
-		if (timestamp == null) {
-			Date now = new Date();
-			timestamp = formatter.format(now);
-		}
-		return timestamp;
-	}
+  static {
+    formatter = new SimpleDateFormat("yyyyMMddHHmm");
+    formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+  }
 
-    enum ActionType{
-        START("start"),
-        CANCEL("cancel");
+  protected static String getNowTimestamp() {
+    if (timestamp == null) {
+      Date now = new Date();
+      timestamp = formatter.format(now);
+    }
+    return timestamp;
+  }
 
-        private final String action;
-        ActionType(String action){
-            this.action = action;
-        }
+  enum ActionType {
+    START("start"),
+    CANCEL("cancel");
 
-        String action(){
-            return action;
-        }
+    private final String action;
+
+    ActionType(String action) {
+      this.action = action;
     }
 
-	/**
-	 * @param args
-	 * @throws UnknownHostException
-	 */
-	public static void main(String[] args) throws UnknownHostException {
-		// TODO Auto-generated method stub
-		/*String[] strArr = new String[]{"one", "two", "three"};
-        System.out.println("Print string array contents:" + Arrays.toString(strArr));
+    String action() {
+      return action;
+    }
+  }
 
-        System.out.println("=========================================");
+  public static void main(String[] args) throws UnknownHostException {
+    String[] strArr = new String[] {"one", "two", "three"};
+    System.out.println("Print string array contents:" + Arrays.toString(strArr));
 
-		System.out.println(minimizeVersion("MIO.LV.VMIO.SNAPSHOT"));
-		System.out.println(replaceSnapshotWithTimestamp("PVMIOSNAPSHOT."));
-		System.out.println(removeIllegalCharacters("PVMIO201412172136"));
+    System.out.println("=========================================");
 
-		TestJava tj = new TestJava();
-		if(tj.localComponentInfoVector == null){
-			System.out.println("localComponentInfoVector is null");
-		}
-		else{
-			System.out.println("localComponentInfoVector is not null");
-		}
+    System.out.println(minimizeVersion("MIO.LV.VMIO.SNAPSHOT"));
+    System.out.println(replaceSnapshotWithTimestamp("PVMIOSNAPSHOT."));
+    System.out.println(removeIllegalCharacters("PVMIO201412172136"));
 
-		System.out.println("HostName: " + InetAddress.getByName("172.16.33.2").getHostName());
-		System.out.println("normalizeHost: " + tj.normalizeHost("172.16.33.2"));
+    TestJava tj = new TestJava();
+    if (tj.localComponentInfoVector == null) {
+      System.out.println("localComponentInfoVector is null");
+    } else {
+      System.out.println("localComponentInfoVector is not null");
+    }
 
+    System.out.println("HostName: " + InetAddress.getByName("172.16.33.2").getHostName());
+    System.out.println("normalizeHost: " + tj.normalizeHost("172.16.33.2"));
 
-		Matcher m = HOST_PATTERN.matcher("mms-tn-00.traffic.vmio.ericsson.com");
-		if (m.matches()) {
-			System.out.println("matched hostname:" + m.group(1));
-		}*/
+    Matcher m = HOST_PATTERN.matcher("mms-tn-00.traffic.vmio.ericsson.com");
+    if (m.matches()) {
+      System.out.println("matched hostname:" + m.group(1));
+    }
 
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HH_mm_ss_SSS");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HH_mm_ss_SSS");
+    try {
+      Date triggerDate = formatter.parse("20150619_21_04_21_000");
+      System.out.println(triggerDate.toString());
+      System.out.println(formatter.format(triggerDate));
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
-		try {
-			Date triggerDate = formatter.parse("20150619_21_04_21_000");
-			System.out.println(triggerDate.toString());
-			System.out.println(formatter.format(triggerDate));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    System.out.println("Compare a string with an enum: " + "START".equals(ActionType.START));
+    System.out.println(
+        "Compare a string with an enum: " + "start".equals(ActionType.START.action()));
 
-		System.out.println("Compare a string with an enum: " + "START".equals(ActionType.START));
-		System.out.println("Compare a string with an enum: " + "start".equals(ActionType.START.action()));
+    long triggerDate = 1445687731000L;
+    long currentTime = 1437738931621L;
 
-		long triggerDate = 1445687731000l;
-		long currentTime = 1437738931621l;
+    long delayLimit = currentTime + 92 * 86400000L;
+    System.out.println("Delay limit:" + delayLimit);
 
-		long delayLimit = currentTime + 92 * 86400000l;
-		System.out.println("Delay limit:" + delayLimit);
+    if (triggerDate > currentTime + 92 * 86400000) {
+      System.out.println("Beyond limitation!");
+    } else {
+      System.out.println("Within limitation");
+    }
 
-        if(triggerDate > currentTime + 92 * 86400000){
-        	System.out.println("Beyond limitation!");
-        }
-        else{
-        	System.out.println("Within limitation");
-        }
+    if (triggerDate > delayLimit) {
+      System.out.println("Beyond limitation!");
+    } else {
+      System.out.println("Within limitation");
+    }
 
-        if(triggerDate > delayLimit){
-        	System.out.println("Beyond limitation!");
-        }
-        else{
-        	System.out.println("Within limitation");
-        }
+    Date trigDate = new Date(triggerDate);
+    Date dateLimit = new Date(currentTime + 92 * 86400000L);
+    if (trigDate.compareTo(dateLimit) > 0) {
+      System.out.println("Beyond limitation!");
+    } else {
+      System.out.println("Within limitation");
+    }
 
-        Date trigDate = new Date(triggerDate);
-		Date dateLimit = new Date(currentTime + 92 * 86400000l);
-		if(trigDate.compareTo(dateLimit) > 0){
-			System.out.println("Beyond limitation!");
-		}
-        else{
-        	System.out.println("Within limitation");
-        }
+    // Pattern address_range_regexp = Pattern.compile("[00000000-9999999999]");
+    Pattern addressRangeRegexp = Pattern.compile("\\+?[0-9]{8,10}");
+    String[] testStrArr =
+        new String[] {
+          "5142984598",
+          "+5142984598",
+          "+15142984598",
+          "00000000",
+          "000000001",
+          "0000000001",
+          "9999999999",
+          "+9999999999",
+          "12345678",
+          "1234567",
+          "0000000",
+          "0000000000",
+          "99999999900"
+        };
+    for (int i = 0; i < testStrArr.length; i++) {
+      System.out.print(testStrArr[i] + ":");
+      if (addressRangeRegexp.matcher(testStrArr[i]).matches()) {
+        System.out.println("Match!");
+      } else {
+        System.out.println("Not match!");
+      }
+    }
 
-		//Pattern address_range_regexp = Pattern.compile("[00000000-9999999999]");
-		Pattern address_range_regexp = Pattern.compile("\\+?[0-9]{8,10}");
-		String[] testStrArr = new String[]{"5142984598", "+5142984598", "+15142984598", "00000000","000000001", "0000000001", "9999999999", "+9999999999", "12345678", "1234567", "0000000", "0000000000", "99999999900"};
-		for(int i = 0; i < testStrArr.length; i++){
-		    System.out.print(testStrArr[i] + ":");
-		    if(address_range_regexp.matcher(testStrArr[i]).matches()){
-		        System.out.println("Match!");
-		    }
-		    else{
-		        System.out.println("Not match!");
-		    }
+    String[] addressElem = "1.1.1234567890".split("[.]");
 
-		}
+    for (String addr : addressElem) {
+      System.out.println(addr);
+    }
+    try {
+      ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("obj.out"));
+      oos.writeObject("This is a Java String serialized to a file");
+      oos.close();
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
-		String[] addressElem = "1.1.1234567890".split("[.]");
+    System.out.println("address_range is: " + "\\\\+?[0-9]{8,15}");
 
-		for(String addr : addressElem){
-		    System.out.println(addr);
-		}
-		try {
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("obj.out"));
-			oos.writeObject("This is a Java String serialized to a file");
-			oos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    Date myDate = new Date(1449858032246L);
+    System.out.println("Date is:" + myDate.toString());
 
-		System.out.println("address_range is: " + "\\\\+?[0-9]{8,15}");
+    System.out.println(
+        "Print French message: "
+            + "Victor Hugo est né le 26 Février 1802 à Besancon en France. Poète, romancier");
 
-		Date aDate = new Date(1449858032246l);
-		System.out.println("Date is:" + aDate.toString());
+    System.out.println("Print Chinese message: " + "测试Java编码");
 
-		System.out.println("Print French message: " + "Victor Hugo est né le 26 Février 1802 à Besancon en France. Poète, romancier");
+    try {
+      String aaa = "ABC Farmacéutica Corporation";
+      String bbb = "ABC FarmacÃ©utica Corporation";
 
-		System.out.println("Print Chinese message: " + "测试Java编码");
+      aaa = URLEncoder.encode(aaa, "UTF-8");
+      String bbb1 = URLDecoder.decode(bbb, "UTF-8");
 
+      System.out.println("aaa   " + aaa);
+      System.out.println("bbb1   " + bbb1);
 
-        try{
-            String aaa = "ABC Farmacéutica Corporation";
-            String bbb = "ABC FarmacÃ©utica Corporation";
+      String bbb2 = URLDecoder.decode(new String(bbb.getBytes("ISO-8859-1"), "UTF-8"), "UTF-8");
+      System.out.println("bbb2   " + bbb2);
 
-            aaa = URLEncoder.encode(aaa, "UTF-8");
-            String bbb1 = URLDecoder.decode(bbb, "UTF-8");
+    } catch (Exception e) {
+      System.out.println(e);
+    }
 
-            System.out.println("aaa   "+aaa);
-            System.out.println("bbb1   "+bbb1);
+    Pattern chineseRegexp = Pattern.compile(".*欢迎.*");
+    if (chineseRegexp.matcher("我欢迎你").matches()) {
+      System.out.println("中文匹配成功");
+    }
 
-            String bbb2 = URLDecoder.decode(new String(bbb.getBytes("ISO-8859-1"), "UTF-8"), "UTF-8");
-            System.out.println("bbb2   "+bbb2);
+    Pattern arabicRegexp = Pattern.compile(".*رسائل جديدة.*");
+    if (arabicRegexp
+        .matcher("أهلا Matthew. لديك 1 رسائل جديدة من Jeffrey! لقرائتها، إذهب إلىm.refunite.org")
+        .matches()) {
+      System.out.println("Arabic matched");
+    }
 
-        }catch(Exception e){
-            System.out.println(e);
-        }
+    if (arabicRegexp
+        .matcher(
+            "\"أهلا Matthew. لديك 1 رسائل جديدة من Jeffrey! لقرائتها، إذهب إلىm.refunite.org\"")
+        .matches()) {
+      System.out.println("Arabic matched again");
+    }
 
-        Pattern chinese_regexp = Pattern.compile(".*欢迎.*");
-        if(chinese_regexp.matcher("我欢迎你").matches()){
-        	System.out.println("中文匹配成功");
-        }
-        
-        Pattern arabic_regexp = Pattern.compile(".*رسائل جديدة.*");
-        if(arabic_regexp.matcher("أهلا Matthew. لديك 1 رسائل جديدة من Jeffrey! لقرائتها، إذهب إلىm.refunite.org").matches()){
-        	System.out.println("Arabic matched");
-        }
-        
-        if(arabic_regexp.matcher("\"أهلا Matthew. لديك 1 رسائل جديدة من Jeffrey! لقرائتها، إذهب إلىm.refunite.org\"").matches()){
-        	System.out.println("Arabic matched again");
-        }
-        
-        String origStr = "Original String";
-        changeStr(origStr);
-        System.out.println(origStr);
+    String origStr = "Original String";
+    changeStr(origStr);
+    System.out.println(origStr);
+  }
 
-	}
-	
-	public static void changeStr (String str){
-	    str = "Changed inside a method";
-	}
+  public static void changeStr(String str) {
+    str = "Changed inside a method";
+  }
 
-	public static String minimizeVersion(String originalString) {
-		String tokens[] = originalString.split("\\.");
-		if (tokens.length >= 3) {
-			originalString = tokens[2];
-		}
-		// Now the rest
-		for (int i = 3; i < tokens.length; i++) {
-			originalString = originalString + tokens[i];
-			originalString = originalString + ".";
-		}
-		return originalString;
-	}
+  public static String minimizeVersion(String originalString) {
+    String[] tokens = originalString.split("\\.");
+    StringBuilder result = new StringBuilder();
+    if (tokens.length >= 3) {
+      result.append(tokens[2]);
+    }
+    // Now the rest
+    for (int i = 3; i < tokens.length; i++) {
+      result.append(tokens[i]);
+      result.append('.');
+    }
+    return result.toString();
+  }
 
-	protected static String replaceSnapshotWithTimestamp(String originalString) {
+  protected static String replaceSnapshotWithTimestamp(String originalString) {
+    StringBuilder sb = new StringBuilder();
+    int indexOfSnapshot = -1;
+    if ((indexOfSnapshot = originalString.toUpperCase().indexOf("SNAPSHOT")) != -1) {
+      String timestampAsString = getNowTimestamp();
+      String beforeSnapshot = originalString.substring(0, indexOfSnapshot);
+      sb.append(beforeSnapshot);
+      sb.append(timestampAsString);
+    }
+    return sb.toString();
+  }
 
-		int indexOfSnapshot = -1;
-		if ((indexOfSnapshot = originalString.toUpperCase().indexOf("SNAPSHOT")) != -1) {
-			String timestampAsString = getNowTimestamp();
-			String beforeSnapshot = originalString
-					.substring(0, indexOfSnapshot);
-			originalString = beforeSnapshot;
-			originalString = originalString + timestampAsString;
-		}
-		return originalString;
-	}
+  protected static String removeIllegalCharacters(String originalString) {
+    String newString = "";
+    for (int i = 0; i < originalString.length(); i++) {
+      char c = originalString.charAt(i);
+      if ((c >= 'a') && (c <= 'z') || (c >= 'A') && (c <= 'Z') || (c >= '0') && (c <= '9')) {
+        newString += c;
+      }
+    }
+    return newString;
+  }
 
-	protected static String removeIllegalCharacters(String originalString) {
-		String newString = "";
-		for (int i = 0; i < originalString.length(); i++) {
-			char c = originalString.charAt(i);
-			if ((c >= 'a') && (c <= 'z') || (c >= 'A') && (c <= 'Z')
-					|| (c >= '0') && (c <= '9')) {
-				newString += c;
-			}
-		}
-		return newString;
-	}
+  public String normalizeHost(String myHost) {
 
-	public String normalizeHost(String aHost) {
+    String normalizedHost = null;
+    try {
+      // Transform into a host name
+      normalizedHost = InetAddress.getByName(myHost).getHostName();
 
-		String normalizedHost = null;
-		try {
-			// Transform into a host name
-			normalizedHost = InetAddress.getByName(aHost).getHostName();
+      // Normalize by removing the suffix -[bot], if present
+      Matcher m = HOST_PATTERN.matcher(normalizedHost);
+      if (m.matches()) {
+        normalizedHost = m.group(1);
+      }
+    } catch (UnknownHostException e) {
+      normalizedHost = myHost;
+    }
 
-			// Normalize by removing the suffix -[bot], if present
-			Matcher m = HOST_PATTERN.matcher(normalizedHost);
-			if (m.matches()) {
-				normalizedHost = m.group(1);
-			}
-		} catch (UnknownHostException e) {
-			normalizedHost = aHost;
-		}
+    return normalizedHost;
+  }
 
-		return normalizedHost;
-	}
-
+  public static void testGoogleFormatter() {
+    System.out.println("Test Google Java Code Style Formatter profile and implementation");
+  }
 }

@@ -15,10 +15,5 @@ package ericsson.emc;
 
 import java.io.IOException;
 
-/**
- * @author ewenxie
- *
- */
-public class MyTestIOException extends IOException {
-
-}
+/** @author ewenxie */
+public class MyTestIOException extends IOException {}
