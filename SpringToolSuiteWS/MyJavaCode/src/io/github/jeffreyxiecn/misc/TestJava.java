@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
@@ -70,7 +71,7 @@ public class TestJava {
     System.out.println(removeIllegalCharacters("PVMIO201412172136"));
 
     TestJava tj = new TestJava();
-    if (tj.localComponentInfoVector == null) {
+    if (localComponentInfoVector == null) {
       System.out.println("localComponentInfoVector is null");
     } else {
       System.out.println("localComponentInfoVector is not null");
@@ -219,6 +220,18 @@ public class TestJava {
     String origStr = "Original String";
     changeStr(origStr);
     System.out.println(origStr);
+
+    final LocalDate now = LocalDate.now();
+    System.out.println(now);
+    final StringBuilder sb = new StringBuilder("Try change me");
+    sb.append(", append some text");
+    System.out.println(sb);
+    // sb = new StringBuilder("Try to reference another object"); //compile time error
+    
+    Integer[][] ints = { { 1, 2, 3 }, { null }, { 7, 8, 9 } };
+    //java.lang.ArrayIndexOutOfBoundsException
+    System.out.println("value = " + ints[1][1].intValue());
+
   }
 
   public static void changeStr(String str) {
