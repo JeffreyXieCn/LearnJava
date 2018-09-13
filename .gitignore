@@ -1,3 +1,11 @@
+# Eclipse
+.settings/
+*.project
+*.classpath
+.prefs
+*.prefs
+.metadata/
+
 # Compiled class file
 *.class
 
@@ -21,7 +29,6 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-.metadata
 bin/
 tmp/
 *.tmp
@@ -29,7 +36,6 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
 .loadpath
 .recommenders
 
@@ -73,6 +79,15 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+**/node_modules/
+**/dist
+**/tmp
+**/out-tsc
+
+# Maven
+log/
+target/
 
 # PMD files
 .pmd
