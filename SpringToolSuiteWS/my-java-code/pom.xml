@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.github.jeffreyxiecn</groupId>
+	<artifactId>my-java-code</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Learn how to rock and roll in Java</description>
+	<packaging>jar</packaging>
+
+	<name>my-java-code</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<gib.referenceBranch>refs/heads/master</gib.referenceBranch>
+		<gib.skipTestsForNotImpactedModules>true</gib.skipTestsForNotImpactedModules>
+		<gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
+		<gib.failOnError>false</gib.failOnError>
+		<!-- <gib.enabled>false</gib.enabled> -->
+		<junit.version>4.12</junit.version>
+		<org.hamcrest.version>1.3</org.hamcrest.version>
+		<mockito.version>2.21.0</mockito.version>
+		<!-- logging -->
+		<org.slf4j.version>1.7.21</org.slf4j.version>
+		<logback.version>1.1.7</logback.version>
+		<!-- plugins -->
+		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+		<java.version>1.8</java.version>
+		<log4j.version>1.2.17</log4j.version>
+	</properties>
+</project>

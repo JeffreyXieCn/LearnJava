@@ -77,8 +77,8 @@ public class TestJava {
       System.out.println("localComponentInfoVector is not null");
     }
 
-    System.out.println("HostName: " + InetAddress.getByName("172.16.33.2").getHostName());
-    System.out.println("normalizeHost: " + tj.normalizeHost("172.16.33.2"));
+    //System.out.println("HostName: " + InetAddress.getByName("172.16.33.2").getHostName());
+    //System.out.println("normalizeHost: " + tj.normalizeHost("172.16.33.2"));
 
     Matcher m = HOST_PATTERN.matcher("mms-tn-00.traffic.vmio.ericsson.com");
     if (m.matches()) {
@@ -230,7 +230,7 @@ public class TestJava {
     
     Integer[][] ints = { { 1, 2, 3 }, { null }, { 7, 8, 9 } };
     //java.lang.ArrayIndexOutOfBoundsException
-    System.out.println("value = " + ints[1][1].intValue());
+    //System.out.println("value = " + ints[1][1].intValue());
 
   }
 
