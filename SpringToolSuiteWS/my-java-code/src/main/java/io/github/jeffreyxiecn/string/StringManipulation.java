@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class StringManipulation {
@@ -69,8 +70,15 @@ public class StringManipulation {
     words = Arrays.copyOf(invertedWords, invertedWords.length, String[].class);
     return String.join(delimiter, words);
   }
+  
+  public static String reverseWords4(String original) {
+    String delimiter = " ";
+    List<String> listOfWords = Arrays.asList(original.split(delimiter));
+    Collections.reverse(listOfWords);
+    return listOfWords.stream().collect(Collectors.joining(delimiter));
+  }
 
-  public static void invertUsingFor(Object[] array) {
+  private static void invertUsingFor(Object[] array) {
     for (int i = 0; i < array.length / 2; i++) {
       Object temp = array[i];
       array[i] = array[array.length - 1 - i];
@@ -78,7 +86,7 @@ public class StringManipulation {
     }
   }
 
-  public static Object[] invertUsingStreams(Object[] array) {
+  private static Object[] invertUsingStreams(Object[] array) {
     return IntStream.rangeClosed(1, array.length).mapToObj(i -> array[array.length - i]).toArray();
   }
 
