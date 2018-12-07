@@ -15,6 +15,7 @@ public class StringManipulation {
 
   public static void main(String[] args) {
     String str = "Java   is cool";
+    System.out.println(new StringBuilder(str).reverse().toString());
     System.out.println(reverseWords(str));
     System.out.println(reverseWords2(str));
     System.out.println(reverseWords3(str));
@@ -70,7 +71,7 @@ public class StringManipulation {
     words = Arrays.copyOf(invertedWords, invertedWords.length, String[].class);
     return String.join(delimiter, words);
   }
-  
+
   public static String reverseWords4(String original) {
     String delimiter = " ";
     List<String> listOfWords = Arrays.asList(original.split(delimiter));
