@@ -25,16 +25,11 @@ public class FlipEquivalentBinaryTrees {
     }
 
     if (root1.left != null) {
-      if (root2.left != null) {
-        if (root1.left.val == root2.left.val) {
-          // suppose on this level it is not flipped
-          return flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right);
-        } else {
-          // suppose on this level it is flipped
-          return flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left);
-        }
-      } else { // root2.left == null
-        return flipEquiv(root1.left, root2.right);
+      if (root2.left != null && root1.left.val == root2.left.val) {
+        // suppose on this level it is not flipped
+        return flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right);
+      } else {
+        return flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left);
       }
     } else if (root1.right != null) {
       if (root2.right != null) {
@@ -55,6 +50,18 @@ public class FlipEquivalentBinaryTrees {
     } else {
       return false;
     }
+  }
+
+  public boolean flipEquiv2(TreeNode root1, TreeNode root2) {
+    if (root1 == null && root2 == null) {
+      return true;
+    }
+    if (root1 == null || root2 == null || root1.val != root2.val) {
+      return false;
+    }
+
+    return (flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right)
+        || flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left));
   }
 
   public static void main(String[] args) {
