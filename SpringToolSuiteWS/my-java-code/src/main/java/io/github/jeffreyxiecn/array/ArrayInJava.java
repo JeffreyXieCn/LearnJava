@@ -1,6 +1,7 @@
 package io.github.jeffreyxiecn.array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArrayInJava {
@@ -22,5 +23,35 @@ public class ArrayInJava {
     // ArrayList<String>[] alArr3 = new ArrayList<String>[10]; //Cannot create a generic array of
     // ArrayList<String>
 
+    int[] arr = {2, 5, 1023, 0, 5, 7, 2, 1022};
+    sortArray(arr);
+    System.out.println();
+    for (int element : arr) {
+      System.out.print(element + " ");
+    }
+    System.out.println();
+    // System.out.println(arr.toString());
+    System.out.println(Arrays.toString(arr));
+    Arrays.stream(arr).forEach(System.out::println);
+  }
+
+  /** @param arr an array whose elements' value is between [0, 2^10); */
+  public static void sortArray(int[] arr) {
+    int numberOfBits = 10;
+    int arrSize = (int) Math.pow(2, numberOfBits);
+    int[] counter = new int[arrSize];
+    for (int i = 0; i < arr.length; i++) {
+      counter[arr[i]]++;
+    }
+
+    int index = 0;
+    for (int i = 0; i < arrSize; i++) {
+      if (counter[i] > 0) {
+        // the value i has appeared at least once
+        for (int j = 0; j < counter[i]; j++) {
+          arr[index++] = i;
+        }
+      }
+    }
   }
 }
