@@ -33,6 +33,9 @@ public class ArrayInJava {
     // System.out.println(arr.toString());
     System.out.println(Arrays.toString(arr));
     Arrays.stream(arr).forEach(System.out::println);
+
+    int[] myWeight = {43, 54, 41, 43, 48, 53, 40};
+    System.out.println(findMax(myWeight));
   }
 
   /** @param arr an array whose elements' value is between [0, 2^10); */
@@ -50,6 +53,49 @@ public class ArrayInJava {
         // the value i has appeared at least once
         for (int j = 0; j < counter[i]; j++) {
           arr[index++] = i;
+        }
+      }
+    }
+  }
+
+  /*
+   *
+   * Question2: One int array A[], indicating my weight number every day.
+   * Find the max difference weight Max(Aj - Ai). Ai < Aj, i<j,
+   * A[]={43, 54, 41, 43, 48, 53, 40}
+   * return 53-41=12
+   */
+  public static int findMax(int[] arr) {
+    int maxDiff = -1;
+    int min = arr[0];
+    int curDiff;
+    for (int i = 1; i < arr.length; i++) {
+      curDiff = arr[i] - min;
+      if (curDiff > maxDiff) {
+        maxDiff = curDiff;
+      } else if (arr[i] < min) {
+        min = arr[i];
+      }
+    }
+
+    return maxDiff;
+  }
+
+  public static int countOneBlocks(int[][] matrix) {
+    int counter = 0;
+    for (int i = 0; i < matrix.length; i++) {
+      for (int j = 0; j < matrix[i].length; j++) {
+        // first, consider only up and left direction
+        if (matrix[i][j] == 1) {
+          if (j > 0
+              && i > 0
+              && matrix[i - 1][j] > 0
+              && matrix[i][j - 1] > 0
+              && matrix[i - 1][j] != matrix[i][j - 1]) {
+            // this element's left neighbor and up neighbor belongs to two different labeled blocks
+            // merge the block with bigger label with the block with small label
+            mergeBlocks(i, j, matrix[i - 1][j], matrix[i][j - 1]);
+          }
         }
       }
     }
