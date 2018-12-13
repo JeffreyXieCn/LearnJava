@@ -282,6 +282,100 @@ public class HashSetAndHashMap {
     return result.toArray(new String[result.size()]);
   }
 
+  public int firstUniqChar(String s) {
+    Map<Character, Integer> counts = new HashMap<>();
+    char[] chars = s.toCharArray();
+    for (char ch : chars) {
+      if (counts.containsKey(ch)) {
+        counts.put(ch, counts.get(ch) + 1);
+      } else {
+        counts.put(ch, 1);
+      }
+    }
+
+    for (int i = 0; i < chars.length; i++) {
+      if (counts.get(chars[i]) == 1) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  public int firstUniqChar2(String s) {
+    Map<Character, Integer> counts = new HashMap<>();
+    char[] chars = s.toCharArray();
+    for (char ch : chars) {
+      //      if (counts.containsKey(ch)) {
+      //        counts.put(ch, counts.get(ch) + 1);
+      //      } else {
+      //        counts.put(ch, 1);
+      //      }
+      counts.put(ch, counts.getOrDefault(ch, 0) + 1);
+    }
+
+    for (int i = 0; i < chars.length; i++) {
+      if (counts.get(chars[i]) == 1) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  public int[] intersect(int[] nums1, int[] nums2) {
+    int[] toScan = nums1;
+    int[] toMap = nums2;
+    if (nums2.length > nums1.length) {
+      toScan = nums2;
+      toMap = nums1;
+    }
+
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int num : toMap) {
+      map.put(num, map.getOrDefault(num, 0) + 1);
+    }
+
+    List<Integer> result = new ArrayList<>();
+    int count;
+    for (int num : toScan) {
+      if (map.containsKey(num)) {
+        result.add(num);
+        count = map.get(num);
+        if (count == 1) {
+          map.remove(num);
+        } else {
+          map.put(num, count - 1);
+        }
+      }
+    }
+
+    int[] arr = new int[result.size()];
+    int idx = 0;
+    for (int ele : result) {
+      arr[idx++] = ele;
+    }
+    return arr;
+
+    // return result.stream().mapToInt(Integer::intValue).toArray();
+
+  }
+
+  public boolean containsNearbyDuplicate(int[] nums, int k) {
+    Map<Integer, Integer> numToIdx = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+      if (numToIdx.containsKey(nums[i])) {
+        // this number appears before
+        if (i - numToIdx.get(nums[i]) <= k) {
+          return true;
+        }
+      }
+      numToIdx.put(nums[i], i);
+    }
+
+    return false;
+  }
+
   public static void main(String[] args) {
     int[] arr2 = {5, 12, 7, 15, 8, 9, 11, 10};
     printNumbersOfSum(arr2, 20);
