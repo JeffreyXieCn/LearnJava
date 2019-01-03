@@ -94,3 +94,6 @@ target/
 
 # Checkstyle files
 .checkstyle
+
+pom.properties
+MANIFEST.MF
