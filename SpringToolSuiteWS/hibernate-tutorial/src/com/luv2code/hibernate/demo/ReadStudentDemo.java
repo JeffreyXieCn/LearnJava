@@ -1,5 +1,6 @@
 package com.luv2code.hibernate.demo;
 
+import java.text.ParseException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,7 +25,8 @@ public class ReadStudentDemo {
 
       // create a student object
       System.out.println("Creating new student object...");
-      Student tempStudent = new Student("Daffy", "Duck", "paul@luv2code.com");
+      Student tempStudent =
+          new Student("Daffy", "Duck", "daffy@luv2code.com", DateUtils.parseDate("31/12/1999"));
 
       // start a transaction
       session.beginTransaction();
@@ -54,6 +56,9 @@ public class ReadStudentDemo {
       session.getTransaction().commit();
 
       System.out.println("Done!");
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     } finally {
       factory.close();
     }
