@@ -1,3 +1,4 @@
+package io.github.jeffreyxiecn.multithreading;
 /*
 Question1:
 Thread1: print 1, 4, 7, 10...
