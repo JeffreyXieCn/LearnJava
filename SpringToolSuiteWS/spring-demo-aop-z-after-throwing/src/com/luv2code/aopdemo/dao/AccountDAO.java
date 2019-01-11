@@ -24,11 +24,9 @@ public class AccountDAO {
     }
 
     return Arrays.asList(
-        new Account[] {
-          new Account("John", "Silver"),
-          new Account("Madhu", "Platinum"),
-          new Account("Luca", "Gold")
-        });
+        new Account("John", "Silver"),
+        new Account("Madhu", "Platinum"),
+        new Account("Luca", "Gold"));
   }
 
   public boolean doWork() {

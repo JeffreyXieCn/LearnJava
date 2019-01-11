@@ -19,11 +19,15 @@ public class AccountDAO {
   // add a new method: findAccount()
   public List<Account> findAccounts() {
     return Arrays.asList(
-        new Account[] {
-          new Account("John", "Silver"),
-          new Account("Madhu", "Platinum"),
-          new Account("Luca", "Gold")
-        });
+        new Account("John", "Silver"),
+        new Account("Madhu", "Platinum"),
+        new Account("Luca", "Gold"));
+    //    return Arrays.asList(
+    //        new Account[] {
+    //          new Account("John", "Silver"),
+    //          new Account("Madhu", "Platinum"),
+    //          new Account("Luca", "Gold")
+    //        });
   }
 
   public boolean doWork() {
