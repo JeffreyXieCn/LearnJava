@@ -99,3 +99,4 @@ pom.properties
 MANIFEST.MF
 
 **/SpringToolSuiteWS/Servers
+.DS_Store
