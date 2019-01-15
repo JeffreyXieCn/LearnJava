@@ -14,5 +14,16 @@ public class GetRealClassType {
     al.add(new Double(5.37));
     System.out.println(al.get(1).getClass().getCanonicalName());
     System.out.println(al.get(2).getClass().getCanonicalName());
+
+    Vehicle v = new Car();
+    Car car = (Car) new Vehicle();
+    System.out.println(
+        "car: "
+            + car); // ClassCastException: io.github.jeffreyxiecn.oop.Vehicle cannot be cast to
+                    // io.github.jeffreyxiecn.oop.Car
   }
 }
+
+class Vehicle {}
+
+class Car extends Vehicle {}
