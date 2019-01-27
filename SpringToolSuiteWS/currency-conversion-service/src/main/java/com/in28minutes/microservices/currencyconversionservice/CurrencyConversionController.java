@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 public class CurrencyConversionController {
   @Autowired private CurrencyExchangeServiceProxy proxy;
 
@@ -46,6 +48,7 @@ public class CurrencyConversionController {
       @PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
 
     CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
+    log.info(">>>>>>>>>>>>>>>>>>>>{}", response);
 
     return new CurrencyConversionBean(
         response.getId(),
