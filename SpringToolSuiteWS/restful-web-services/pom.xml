@@ -41,6 +41,7 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+        <!-- Access the HAL browser at http://localhost:8080/browser/index.html#/ or just http://localhost:8080 -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-hal-browser</artifactId>
