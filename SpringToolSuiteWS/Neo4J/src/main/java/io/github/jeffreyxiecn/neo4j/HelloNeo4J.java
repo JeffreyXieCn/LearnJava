@@ -24,6 +24,11 @@ public class HelloNeo4J implements AutoCloseable {
 
   public void printGreeting(final String message) {
     try (Session session = driver.session()) {
+
+      //      Map<String, String> checksumsMap = new HashMap<>();
+      //      checksumsMap.put("sha1", "3b8f07c6539085d9b5db7c3aef7e3c1241bf58bf");
+      //      checksumsMap.put("sha256",
+      // "c0488108f33e2d491f8f3de208da8c03d7c3fb19f938bccd7b9a11ae5290114c");
       String greeting =
           session.writeTransaction(
               new TransactionWork<String>() {
@@ -33,8 +38,10 @@ public class HelloNeo4J implements AutoCloseable {
                       tx.run(
                           "CREATE (a:Greeting) "
                               + "SET a.message = $message "
+                              // + "SET a.checksums = $chksums "
                               + "RETURN a.message + ', from node ' + id(a)",
                           parameters("message", message));
+                  // parameters("message", message, "chksums", checksumsMap));
                   return result.single().get(0).asString();
                 }
               });
