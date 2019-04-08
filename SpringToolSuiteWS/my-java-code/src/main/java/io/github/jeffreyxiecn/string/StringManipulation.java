@@ -129,6 +129,7 @@ public class StringManipulation {
    *     trigger formatting.
    */
   public static char firstNonRepeatingChar2(String s) {
+    // By default, LinkedHashMap maintains insertion order
     Map<Character, Boolean> m = new LinkedHashMap<>();
     for (char c : s.toCharArray()) {
       if (m.containsKey(c)) {
