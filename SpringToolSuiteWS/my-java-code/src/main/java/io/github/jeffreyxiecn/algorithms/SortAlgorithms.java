@@ -195,6 +195,25 @@ public class SortAlgorithms {
     return left;
   }
 
+  public static int binarySearch(int[] a, int x) {
+    int low = 0;
+    int high = a.length - 1;
+    int middle;
+    while (low <= high) {
+      middle = (low + high) / 2;
+      if (a[middle] == x) {
+        return middle;
+      }
+      if (x < a[middle]) {
+        high = middle - 1;
+      } else {
+        low = middle + 1;
+      }
+    }
+
+    return -1;
+  }
+
   public static int[] moveZerosToArrayEnd(int[] input) {
     // Arrays.sort(input);
     Integer[] intArr = Arrays.stream(input).boxed().toArray(Integer[]::new);

@@ -154,6 +154,17 @@ public class SortAlgorithmsTest {
   }
 
   @Test
+  public void testBinarySearch() {
+    int[] input = {1, 5, 7, 8, 9, 10, 88, 99};
+    int key = 5;
+    int index = Arrays.binarySearch(input, key);
+    assertThat(index, equalTo(SortAlgorithms.binarySearch(input, key)));
+
+    key = 6;
+    assertThat(-1, equalTo(SortAlgorithms.binarySearch(input, key)));
+  }
+
+  @Test
   public void testMoveZerosToArrayEnd() {
     int[] input1 = {3, 0, 4, 0, 1, 0, 2, 0};
     int[] expected1 = {3, 4, 1, 2, 0, 0, 0, 0};
