@@ -40,4 +40,40 @@ public class BinarySearchTreeTest {
     List<Integer> expected = Arrays.asList(3, 4, 5, 6, 7, 8, 9);
     assertEquals(expected, values);
   }
+
+  @Test
+  public void givenABinaryTree_WhenDeletingElements_ThenTreeDoesNotContainThoseElements() {
+    assertTrue(bt.containsNode(9));
+    bt.delete(9);
+    assertFalse(bt.containsNode(9));
+  }
+
+  @Test
+  public void givenABinaryTree_WhenDeletingRoot_ThenReplaceRootWithSamllestValueOnRightBranch() {
+    assertTrue(bt.containsNode(6));
+    bt.delete(6);
+    assertTrue(bt.getRoot().isPresent());
+    assertEquals(7, bt.getRoot().get().value);
+  }
+
+  @Test
+  public void givenABinaryTree_WhenGetNodeValuesPreOrder_ThenReturnValuesPreOrder() {
+    List<Integer> values = bt.getNodeValuesPreOrder();
+    List<Integer> expected = Arrays.asList(6, 4, 3, 5, 8, 7, 9);
+    assertEquals(expected, values);
+  }
+
+  @Test
+  public void givenABinaryTree_WhenGetNodeValuesPostOrder_ThenReturnValuesPreOrder() {
+    List<Integer> values = bt.getNodeValuesPostOrder();
+    List<Integer> expected = Arrays.asList(3, 5, 4, 7, 9, 8, 6);
+    assertEquals(expected, values);
+  }
+
+  @Test
+  public void givenABinaryTree_WhenGetNodeValuesLevelOrder_ThenReturnValuesLevelOrder() {
+    List<Integer> values = bt.getNodeValuesLevelOrder();
+    List<Integer> expected = Arrays.asList(6, 4, 8, 3, 5, 7, 9);
+    assertEquals(expected, values);
+  }
 }
