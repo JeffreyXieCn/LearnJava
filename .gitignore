@@ -1,6 +1,6 @@
 # Eclipse
 .settings/
-#*.project
+*.project
 *.classpath
 .prefs
 *.prefs
