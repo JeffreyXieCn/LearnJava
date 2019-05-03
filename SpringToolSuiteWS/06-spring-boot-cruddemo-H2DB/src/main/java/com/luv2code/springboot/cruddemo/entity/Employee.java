@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +20,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
+@ApiModel(description = "Definition of resource/entity/model Employee")
 public class Employee {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +28,11 @@ public class Employee {
   private int id;
 
   @Column(name = "first_name")
+  @ApiModelProperty(notes = "First name should have at least 2 characters")
   private String firstName;
 
   @Column(name = "last_name")
+  @ApiModelProperty(notes = "Last name should have at least 2 characters")
   private String lastName;
 
   @Column(name = "email")
