@@ -2,7 +2,7 @@ package io.github.jeffreyxiecn.algorithms.heap;
 
 import java.util.Arrays;
 
-public class MinHeap {
+public class MaxHeap {
   private int capacity = 10;
   private int size = 0;
 
@@ -86,7 +86,7 @@ public class MinHeap {
 
   private void heapifyUp() {
     int index = size - 1;
-    while (hasParent(index) && items[index] < items[getParentIndex(index)]) {
+    while (hasParent(index) && items[index] > items[getParentIndex(index)]) {
       swap(index, getParentIndex(index));
       index = getParentIndex(index);
     }
@@ -95,17 +95,17 @@ public class MinHeap {
   private void heapifyDown() {
     int index = 0;
     while (hasLeftChild(index)) {
-      int smallerChildIndex = getLeftChildIndex(index);
-      if (hasRightChild(index) && rightChild(index) < leftChild(index)) {
-        smallerChildIndex = getRightChildIndex(index);
+      int biggerChildIndex = getLeftChildIndex(index);
+      if (hasRightChild(index) && rightChild(index) > leftChild(index)) {
+        biggerChildIndex = getRightChildIndex(index);
       }
 
-      if (items[index] <= items[smallerChildIndex]) {
+      if (items[index] >= items[biggerChildIndex]) {
         break;
       } else {
-        swap(index, smallerChildIndex);
+        swap(index, biggerChildIndex);
       }
-      index = smallerChildIndex;
+      index = biggerChildIndex;
     }
   }
 
