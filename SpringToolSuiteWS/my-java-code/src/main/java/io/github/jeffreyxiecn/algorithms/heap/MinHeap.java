@@ -2,11 +2,11 @@ package io.github.jeffreyxiecn.algorithms.heap;
 
 import java.util.Arrays;
 
-public class MinHeap {
+public class MinHeap implements Heap {
   private int capacity = 10;
   private int size = 0;
 
-  int[] items = new int[capacity];
+  private int[] items = new int[capacity];
 
   private int getLeftChildIndex(int parentIndex) {
     return 2 * parentIndex + 1;
@@ -57,6 +57,12 @@ public class MinHeap {
     }
   }
 
+  @Override
+  public int size() {
+    return size;
+  }
+
+  @Override
   public int peek() {
     if (size == 0) {
       throw new IllegalStateException();
@@ -65,6 +71,7 @@ public class MinHeap {
     return items[0];
   }
 
+  @Override
   public int poll() {
     if (size == 0) {
       throw new IllegalStateException();
@@ -77,6 +84,7 @@ public class MinHeap {
     return item;
   }
 
+  @Override
   public void add(int item) {
     ensureExtraCapacity();
     items[size] = item;
