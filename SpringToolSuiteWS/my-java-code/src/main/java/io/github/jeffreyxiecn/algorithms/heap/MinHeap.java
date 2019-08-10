@@ -52,6 +52,7 @@ public class MinHeap implements Heap {
 
   private void ensureExtraCapacity() {
     if (size == capacity) {
+      System.out.println("****Capacity doubled****");
       capacity *= 2;
       items = Arrays.copyOf(items, capacity);
     }
@@ -77,7 +78,7 @@ public class MinHeap implements Heap {
       throw new IllegalStateException();
     }
 
-    int item = items[0];
+    final int item = items[0];
     items[0] = items[size - 1];
     size--;
     heapifyDown();
@@ -94,7 +95,7 @@ public class MinHeap implements Heap {
 
   private void heapifyUp() {
     int index = size - 1;
-    while (hasParent(index) && items[index] < items[getParentIndex(index)]) {
+    while (hasParent(index) && items[index] < parent(index)) {
       swap(index, getParentIndex(index));
       index = getParentIndex(index);
     }

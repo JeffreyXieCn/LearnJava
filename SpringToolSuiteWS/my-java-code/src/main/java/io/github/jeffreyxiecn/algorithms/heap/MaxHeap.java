@@ -94,7 +94,7 @@ public class MaxHeap implements Heap {
 
   private void heapifyUp() {
     int index = size - 1;
-    while (hasParent(index) && items[index] > items[getParentIndex(index)]) {
+    while (hasParent(index) && items[index] > parent(index)) {
       swap(index, getParentIndex(index));
       index = getParentIndex(index);
     }

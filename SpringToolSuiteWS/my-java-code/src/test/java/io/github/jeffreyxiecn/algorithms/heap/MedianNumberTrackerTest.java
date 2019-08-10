@@ -1,12 +1,12 @@
 package io.github.jeffreyxiecn.algorithms.heap;
 
+import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.Random;
-
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
-
-import junit.framework.Assert;
 
 class MedianNumberTrackerTest {
   private MedianNumberTracker tracker;
@@ -21,26 +21,29 @@ class MedianNumberTrackerTest {
     System.out.println("please enable assert in JVM with -ea(JUnit test case did this by default)");
     float currMedian;
     currMedian = tracker.addRandomNumber(5);
-    Assert.assertEquals(5f, currMedian, 0.0f);
+    assertEquals(5f, currMedian, 0.0f);
 
     currMedian = tracker.addRandomNumber(3);
-    Assert.assertEquals(4f, currMedian, 0.0f);
+    assertEquals(4f, currMedian, 0.0f);
 
     currMedian = tracker.addRandomNumber(2);
-    Assert.assertEquals(3f, currMedian, 0.0f);
+    assertEquals(3f, currMedian, 0.0f);
 
     currMedian = tracker.addRandomNumber(7);
-    Assert.assertEquals(4f, currMedian, 0.0f);
+    assertEquals(4f, currMedian, 0.0f);
 
     currMedian = tracker.addRandomNumber(13);
-    Assert.assertEquals(5f, currMedian, 0.0f);
+    assertEquals(5f, currMedian, 0.0f);
 
     currMedian = tracker.addRandomNumber(6);
-    Assert.assertEquals(5.5f, currMedian, 0.0f);
+    assertEquals(5.5f, currMedian, 0.0f);
   }
 
-  @Test
-  void givenRandomlyGeneratedNumbers_whenAddToTracker_thenMedianIsTracked() {
+  @RepeatedTest(10)
+  void givenRandomlyGeneratedNumbers_whenAddToTracker_thenMedianIsTracked(RepetitionInfo repInfo) {
+    System.out.println(
+        String.format(
+            "====Run %d of %d====", repInfo.getCurrentRepetition(), repInfo.getTotalRepetitions()));
     Random numGenerator = new Random();
     int[] randomInts = numGenerator.ints(20, 0, 100).toArray();
     System.out.println("Random ints:" + Arrays.toString(randomInts));
@@ -51,7 +54,7 @@ class MedianNumberTrackerTest {
       // note randomInts[i] may be overwritten in method calculateMedian
       currMedian = tracker.addRandomNumber(randomInts[i]);
       expectedMedian = calculateMedian(randomInts, i);
-      Assert.assertEquals(expectedMedian, currMedian, 0.0f);
+      assertEquals(expectedMedian, currMedian, 0.0f);
     }
   }
 
@@ -67,6 +70,18 @@ class MedianNumberTrackerTest {
       return randomInts[i];
     }
 
+    insertionSort(randomInts, i);
+
+    if (i % 2 == 1) {
+      // even numbers
+      return (randomInts[i / 2] + randomInts[i / 2 + 1]) / 2.0f;
+    } else {
+      // odd numbers
+      return randomInts[i / 2];
+    }
+  }
+
+  private void insertionSort(int[] randomInts, int i) {
     // randomInts[0...(i-1)] is already sorted, using insertion sort to insert randomInts[i]
     int insertionPoint = Arrays.binarySearch(randomInts, 0, i, randomInts[i]);
     if (insertionPoint < 0) {
@@ -82,13 +97,5 @@ class MedianNumberTrackerTest {
 
     // now randonInts[0...i] is sorted
     System.out.println("Sorted array so far:" + Arrays.toString(Arrays.copyOf(randomInts, i + 1)));
-
-    if (i % 2 == 1) {
-      // even numbers
-      return (randomInts[i / 2] + randomInts[i / 2 + 1]) / 2.0f;
-    } else {
-      // odd numbers
-      return randomInts[i / 2];
-    }
   }
 }
