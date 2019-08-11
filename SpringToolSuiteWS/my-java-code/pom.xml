@@ -94,6 +94,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.javatuples</groupId>
+			<artifactId>javatuples</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.maven.surefire</groupId>
 			<artifactId>surefire-logger-api</artifactId>
 			<version>${maven-surefire-plugin.version}</version>
