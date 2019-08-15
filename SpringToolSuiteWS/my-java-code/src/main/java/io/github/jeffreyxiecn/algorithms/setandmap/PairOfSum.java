@@ -27,6 +27,17 @@ public class PairOfSum {
     return result;
   }
 
+  public static void printNumbersOfSum(int[] arr, int sum) {
+    Set<Integer> substract = new HashSet<>();
+    for (int ele : arr) {
+      if (substract.contains(ele)) {
+        System.out.println(sum - ele + " + " + ele + " = " + sum);
+      } else {
+        substract.add(sum - ele);
+      }
+    }
+  }
+
   public static List<Pair<Integer, Integer>> getPairsWithSum(int[] arr, int sum) {
     Set<Integer> set = new HashSet<>();
     List<Pair<Integer, Integer>> result = new ArrayList<>();

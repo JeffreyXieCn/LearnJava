@@ -9,28 +9,6 @@ import java.util.Set;
 
 public class HashSetAndHashMap {
 
-  public static void printNumbersOfSum(int[] arr, int sum) {
-    Set<Integer> substract = new HashSet<>();
-    for (int ele : arr) {
-      if (substract.contains(ele)) {
-        System.out.println((sum - ele) + " + " + ele + " = " + sum);
-      } else {
-        substract.add(sum - ele);
-      }
-    }
-  }
-
-  public static void printNumbersOfSum2(int[] arr, int sum) {
-    Set<Integer> set = new HashSet<>();
-    for (int ele : arr) {
-      if (set.contains(sum - ele)) {
-        System.out.println((sum - ele) + " + " + ele + " = " + sum);
-      } else {
-        set.add(ele);
-      }
-    }
-  }
-
   public boolean containsDuplicate(int[] nums) {
     Set<Integer> unique = new HashSet<>();
     for (int k : nums) {
@@ -377,9 +355,6 @@ public class HashSetAndHashMap {
   }
 
   public static void main(String[] args) {
-    int[] arr2 = {5, 12, 7, 15, 8, 9, 11, 10};
-    printNumbersOfSum(arr2, 20);
-    printNumbersOfSum2(arr2, 20);
     // int a = null;
     int[] a = null;
     // float b = null;
