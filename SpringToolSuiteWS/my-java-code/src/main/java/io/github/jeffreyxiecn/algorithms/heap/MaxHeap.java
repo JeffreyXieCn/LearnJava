@@ -2,7 +2,7 @@ package io.github.jeffreyxiecn.algorithms.heap;
 
 import java.util.Arrays;
 
-public class MinHeap implements Heap {
+public class MaxHeap implements Heap {
   private int capacity = 10;
   private int size = 0;
 
@@ -52,7 +52,6 @@ public class MinHeap implements Heap {
 
   private void ensureExtraCapacity() {
     if (size == capacity) {
-      System.out.println("****Capacity doubled****");
       capacity *= 2;
       items = Arrays.copyOf(items, capacity);
     }
@@ -78,7 +77,7 @@ public class MinHeap implements Heap {
       throw new IllegalStateException();
     }
 
-    final int item = items[0];
+    int item = items[0];
     items[0] = items[size - 1];
     size--;
     heapifyDown();
@@ -95,7 +94,7 @@ public class MinHeap implements Heap {
 
   private void heapifyUp() {
     int index = size - 1;
-    while (hasParent(index) && items[index] < parent(index)) {
+    while (hasParent(index) && items[index] > parent(index)) {
       swap(index, getParentIndex(index));
       index = getParentIndex(index);
     }
@@ -104,17 +103,17 @@ public class MinHeap implements Heap {
   private void heapifyDown() {
     int index = 0;
     while (hasLeftChild(index)) {
-      int smallerChildIndex = getLeftChildIndex(index);
-      if (hasRightChild(index) && rightChild(index) < leftChild(index)) {
-        smallerChildIndex = getRightChildIndex(index);
+      int biggerChildIndex = getLeftChildIndex(index);
+      if (hasRightChild(index) && rightChild(index) > leftChild(index)) {
+        biggerChildIndex = getRightChildIndex(index);
       }
 
-      if (items[index] <= items[smallerChildIndex]) {
+      if (items[index] >= items[biggerChildIndex]) {
         break;
       } else {
-        swap(index, smallerChildIndex);
+        swap(index, biggerChildIndex);
       }
-      index = smallerChildIndex;
+      index = biggerChildIndex;
     }
   }
 

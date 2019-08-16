@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn.algorithms.graph;
+package io.github.jeffreyxiecn.algorithms.disjointset;
 
 import java.util.Arrays;
 import java.util.HashSet;

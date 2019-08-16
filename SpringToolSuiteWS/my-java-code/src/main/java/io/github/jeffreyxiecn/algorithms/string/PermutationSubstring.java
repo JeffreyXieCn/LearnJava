@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Example: Given a smaller strings and a bigger string b, design an algorithm to find all
+ * permutations of the shorter string within the longer one. Print the location of each permutation.
+ *
+ * @author Jeffrey XIE
+ */
 public class PermutationSubstring {
 
   public static void main(String[] args) {
@@ -38,7 +44,7 @@ public class PermutationSubstring {
     byte[] tempFlags = new byte[flags.length];
     int matchCount;
     int i = 0;
-    while (i <= (b.length() - s.length())) {
+    while (i <= b.length() - s.length()) {
       System.arraycopy(flags, 0, tempFlags, 0, flags.length);
       matchCount = 0;
       for (int j = 0; j < s.length(); j++) {
@@ -75,7 +81,7 @@ public class PermutationSubstring {
 
     byte[] tempCounters = new byte[counters.length];
     int i = 0;
-    while (i <= (b.length() - s.length())) {
+    while (i <= b.length() - s.length()) {
       Arrays.fill(tempCounters, (byte) 0);
       int j;
       for (j = 0; j < s.length(); j++) {
@@ -112,7 +118,7 @@ public class PermutationSubstring {
     Map<Character, Integer> tempMap;
     char curChar;
     int i = 0;
-    while (i <= (b.length() - s.length())) {
+    while (i <= b.length() - s.length()) {
       tempMap = new HashMap<>(map);
       for (int j = 0; j < s.length(); j++) {
         curChar = b.charAt(i + j);
