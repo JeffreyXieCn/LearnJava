@@ -2,7 +2,6 @@ package io.github.jeffreyxiecn.algorithms.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 // IMPORT LIBRARY PACKAGES NEEDED BY YOUR PROGRAM
@@ -99,6 +98,7 @@ public class OptimizeMemoryUtilization {
           return list2.get(1) - list1.get(1);
         };
 
-    Collections.sort(list, cmp);
+    list.sort(cmp);
+    // Collections.sort(list, cmp);
   }
 }

@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn.string;
+package io.github.jeffreyxiecn.algorithms.sort;
 // package whatever; // don't place package name!
 
 // hello

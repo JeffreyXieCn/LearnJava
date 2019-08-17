@@ -1,7 +1,6 @@
 package io.github.jeffreyxiecn.algorithms.sort;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 // IMPORT LIBRARY PACKAGES NEEDED BY YOUR PROGRAM
@@ -40,7 +39,8 @@ public class SortPrimeOrders {
           }
         };
 
-    Collections.sort(primeOrders, cmp);
+    primeOrders.sort(cmp);
+    // Collections.sort(primeOrders, cmp);
 
     primeOrders.addAll(nonPrimeOrders);
     return primeOrders;
