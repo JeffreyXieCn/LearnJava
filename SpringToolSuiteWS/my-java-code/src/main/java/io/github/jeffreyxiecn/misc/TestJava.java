@@ -77,8 +77,8 @@ public class TestJava {
       System.out.println("localComponentInfoVector is not null");
     }
 
-    //System.out.println("HostName: " + InetAddress.getByName("172.16.33.2").getHostName());
-    //System.out.println("normalizeHost: " + tj.normalizeHost("172.16.33.2"));
+    // System.out.println("HostName: " + InetAddress.getByName("172.16.33.2").getHostName());
+    // System.out.println("normalizeHost: " + tj.normalizeHost("172.16.33.2"));
 
     Matcher m = HOST_PATTERN.matcher("mms-tn-00.traffic.vmio.ericsson.com");
     if (m.matches()) {
@@ -144,9 +144,9 @@ public class TestJava {
           "0000000000",
           "99999999900"
         };
-    for (int i = 0; i < testStrArr.length; i++) {
-      System.out.print(testStrArr[i] + ":");
-      if (addressRangeRegexp.matcher(testStrArr[i]).matches()) {
+    for (String element : testStrArr) {
+      System.out.print(element + ":");
+      if (addressRangeRegexp.matcher(element).matches()) {
         System.out.println("Match!");
       } else {
         System.out.println("Not match!");
@@ -227,11 +227,13 @@ public class TestJava {
     sb.append(", append some text");
     System.out.println(sb);
     // sb = new StringBuilder("Try to reference another object"); //compile time error
-    
-    Integer[][] ints = { { 1, 2, 3 }, { null }, { 7, 8, 9 } };
-    //java.lang.ArrayIndexOutOfBoundsException
-    //System.out.println("value = " + ints[1][1].intValue());
 
+    Integer[][] ints = {{1, 2, 3}, {null}, {7, 8, 9}};
+    // java.lang.ArrayIndexOutOfBoundsException
+    // System.out.println("value = " + ints[1][1].intValue());
+
+    assert ((3 + 5) == 8);
+    assert ((3 + 5) == 7);
   }
 
   public static void changeStr(String str) {

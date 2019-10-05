@@ -1,149 +1,155 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.github.jeffreyxiecn</groupId>
-	<artifactId>my-java-code</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<description>Learn how to rock and roll in Java</description>
-	<packaging>jar</packaging>
+    <groupId>io.github.jeffreyxiecn</groupId>
+    <artifactId>my-java-code</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <description>Learn how to rock and roll in Java</description>
+    <packaging>jar</packaging>
 
-	<name>my-java-code</name>
-	<url>http://maven.apache.org</url>
+    <name>my-java-code</name>
+    <url>http://maven.apache.org</url>
 
-	<dependencies>
-		<!-- logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j.version}</version>
-		</dependency>
+    <dependencies>
+        <!-- logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.8.1</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
 
-		<!-- test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit-jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit-jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-core</artifactId>
-			<version>${org.hamcrest.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-library</artifactId>
-			<version>${org.hamcrest.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-all</artifactId>
-			<version>${org.hamcrest.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>${mockito.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.8</version>
-			<scope>provided</scope>
-		</dependency>
+        <!-- test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>${org.hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>${org.hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>${org.hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.javatuples</groupId>
-			<artifactId>javatuples</artifactId>
-			<version>1.2</version>
-		</dependency>
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>1.2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.apache.maven.surefire</groupId>
-			<artifactId>surefire-logger-api</artifactId>
-			<version>${maven-surefire-plugin.version}</version>
-			<!-- to get around bug https://github.com/junit-team/junit5/issues/801 -->
-			<scope>test</scope>
-			<optional>true</optional>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+        <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-logger-api</artifactId>
+            <version>${maven-surefire-plugin.version}</version>
+            <!-- to get around bug https://github.com/junit-team/junit5/issues/801 -->
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<gib.referenceBranch>refs/heads/master</gib.referenceBranch>
-		<gib.skipTestsForNotImpactedModules>true</gib.skipTestsForNotImpactedModules>
-		<gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
-		<gib.failOnError>false</gib.failOnError>
-		<!-- <gib.enabled>false</gib.enabled> -->
-		<junit.version>4.12</junit.version>
-		<junit-jupiter.version>5.2.0</junit-jupiter.version>
-		<org.hamcrest.version>1.3</org.hamcrest.version>
-		<mockito.version>2.21.0</mockito.version>
-		<!-- logging -->
-		<org.slf4j.version>1.7.21</org.slf4j.version>
-		<logback.version>1.1.7</logback.version>
-		<!-- plugins -->
-		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
-		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-		<java.version>1.8</java.version>
-		<log4j.version>1.2.17</log4j.version>
-		<hamcrest.version>1.3</hamcrest.version>
-	</properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <gib.referenceBranch>refs/heads/master</gib.referenceBranch>
+        <gib.skipTestsForNotImpactedModules>true</gib.skipTestsForNotImpactedModules>
+        <gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
+        <gib.failOnError>false</gib.failOnError>
+        <!-- <gib.enabled>false</gib.enabled> -->
+        <junit.version>4.12</junit.version>
+        <junit-jupiter.version>5.2.0</junit-jupiter.version>
+        <org.hamcrest.version>1.3</org.hamcrest.version>
+        <mockito.version>2.21.0</mockito.version>
+        <!-- logging -->
+        <org.slf4j.version>1.7.21</org.slf4j.version>
+        <logback.version>1.1.7</logback.version>
+        <!-- plugins -->
+        <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+        <java.version>1.8</java.version>
+        <log4j.version>1.2.17</log4j.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <jackson.version>2.10.0</jackson.version>
+    </properties>
 </project>

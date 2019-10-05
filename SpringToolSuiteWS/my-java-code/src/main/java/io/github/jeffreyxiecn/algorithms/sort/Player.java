@@ -1,7 +1,5 @@
 package io.github.jeffreyxiecn.algorithms.sort;
-// package whatever; // don't place package name!
 
-// hello
 // Given a list of sports players, each player has name and score.
 // Sort by score descendingly. If the scores are the same, sort by name in the reverse alphabetic
 // order.
