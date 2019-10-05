@@ -1,0 +1,15 @@
+[
+    {
+		"id": 1,
+		"firstName": "first",
+		"hobbies" : [ "Eat", "Sleep", "Play" ]
+	}, {
+		"id": 2,
+		"firstName": "second",
+		"hobbies" : [ "Eat", "Sleep", "Code" ]
+	}, {
+		"id": 3,
+		"firstName": "third",
+		"hobbies" : [ "Study", "Solve", "Share" ]
+	}
+]
