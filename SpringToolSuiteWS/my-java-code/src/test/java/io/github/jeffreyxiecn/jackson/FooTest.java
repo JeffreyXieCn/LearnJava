@@ -1,12 +1,14 @@
-package io.github.jeffreyxiecn.sonder;
+package io.github.jeffreyxiecn.jackson;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import io.github.jeffreyxiecn.jackson.Foo;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -118,6 +121,26 @@ class FooTest {
     Foo thirdFoo = mapper.readValue(tree.get(2).toString(), Foo.class);
     List<String> expected = Arrays.asList("Study", "Solve", "Share");
     assertEquals(expected, thirdFoo.getHobbies());
+  }
+
+  @Test
+  void whenReadJsonFileIntoList_thenFilterSortAndSaveToFile()
+      throws JsonProcessingException, IOException {
+    ObjectMapper mapper = new ObjectMapper();
+    List<Foo> foos =
+        mapper.readValue(
+            new File("src/test/resources/foos.json"), new TypeReference<List<Foo>>() {});
+    List<Foo> result =
+        foos.stream()
+            .filter(foo -> foo.getId() > 1)
+            .sorted(Comparator.comparing(Foo::getId).reversed())
+            .collect(Collectors.toList());
+
+    log.debug("List of Foo to be saved to file:" + result);
+
+    mapper
+        .writerWithDefaultPrettyPrinter()
+        .writeValue(new File("src/test/resources/foosResult.json"), result);
   }
 
   private String readResourceFileIntoString(String path) throws Exception {
