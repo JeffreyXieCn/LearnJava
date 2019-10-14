@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -233,7 +235,17 @@ public class TestJava {
     // System.out.println("value = " + ints[1][1].intValue());
 
     assert ((3 + 5) == 8);
-    assert ((3 + 5) == 7);
+    // assert ((3 + 5) == 7);
+
+    StringBuilder strBld = new StringBuilder("abc");
+    Map<Integer, StringBuilder> map = new HashMap<>();
+    map.put(1, strBld);
+    StringBuilder val = map.get(1);
+    StringBuilder val2 = map.get(1);
+    val.append("de");
+    System.out.println("val2:" + val2);
+    val2.append("fg");
+    System.out.println("val:" + val);
   }
 
   public static void changeStr(String str) {
