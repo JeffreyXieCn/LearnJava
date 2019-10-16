@@ -1,5 +1,6 @@
 package io.github.jeffreyxiecn.io.sonder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,11 +10,11 @@ public class SonderUnitManager {
   // map from unitId to Unit
   private Map<Integer, Unit> units;
 
-  // map from unitId to nearby similar units
-  private Map<Integer, List<UnitWithDistance>> nearbyUnits;
-
   // assume users don't want to see more than 30 nearly similar units
   public static final int MAX_LIMIT = 30;
+
+  // map from unitId to nearby similar units, the size of the list is capped at MAX_LIMIT
+  private Map<Integer, List<UnitWithDistance>> nearbyUnits;
 
   public SonderUnitManager() {
     units = new HashMap<>();
@@ -23,7 +24,11 @@ public class SonderUnitManager {
   public void addUnit(Unit unit) {
     units.put(unit.getId(), unit);
 
-    // calc distance from this unit to existing units
+    // calculate distance from this unit to existing units
+    List<UnitWithDistance> unitsWithDist = new ArrayList<>();
+    for (Unit currUnit : units.values()) {
+      unitsWithDist.add(new UnitWithDistance(currUnit, calcDistance(currUnit, unit)));
+    }
 
     // add an entry for this unit in nearbyUnits
 
