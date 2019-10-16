@@ -88,7 +88,7 @@ public class MaxHeap<E extends Comparable<E>> implements Heap<E> {
 
   @Override
   public List<E> toList() {
-    return Arrays.stream(items).map(ele -> (E) ele).collect(Collectors.toList());
+    return Arrays.stream(items).limit(size).map(ele -> (E) ele).collect(Collectors.toList());
   }
 
   @Override

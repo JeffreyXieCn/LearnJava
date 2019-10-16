@@ -28,7 +28,7 @@ public class UnitManager {
   public List<Unit> nearestSimilarUnits(Unit unit, int limit) {
     List<UnitWithDistance> unitWithDist = new ArrayList<>();
     for (Unit curUnit : units) {
-      if (curUnit.getId() != unit.getId()) {
+      if (curUnit.getId() != unit.getId() && isSimilar(curUnit, unit)) {
         unitWithDist.add(new UnitWithDistance(curUnit, calcDistance(curUnit, unit)));
       }
     }
@@ -38,12 +38,10 @@ public class UnitManager {
     int counter = 0;
     List<Unit> result = new ArrayList<>();
     for (UnitWithDistance curUnitDist : unitWithDist) {
-      if (isSimilar(curUnitDist, unit)) {
-        result.add(curUnitDist.getUnit());
-        counter++;
-        if (counter == limit) {
-          return result;
-        }
+      result.add(curUnitDist.getUnit());
+      counter++;
+      if (counter == limit) {
+        return result;
       }
     }
 
@@ -53,22 +51,20 @@ public class UnitManager {
   public List<Unit> nearestSimilarUnitsWithMaxHeap(Unit unit, int limit) {
     List<UnitWithDistance> unitWithDist = new ArrayList<>();
     for (Unit curUnit : units) {
-      if (curUnit.getId() != unit.getId()) {
+      if (curUnit.getId() != unit.getId() && isSimilar(curUnit, unit)) {
         unitWithDist.add(new UnitWithDistance(curUnit, calcDistance(curUnit, unit)));
       }
     }
 
     Heap<UnitWithDistance> heap = new MaxHeap<>();
     for (UnitWithDistance curUnitDist : unitWithDist) {
-      if (isSimilar(curUnitDist, unit)) {
-        if (heap.size() < limit) {
-          heap.add(curUnitDist);
-        } else if (curUnitDist.compareTo(heap.peek()) < 0) { // peek is O(1) operation
-          // curUnitDist is closer than the max in the heap, so need to remove the max from the heap
-          // (which is on the top), and add curUnitDist to the heap
-          heap.poll(); // poll is O(log(HEAP_SIZE)) operation
-          heap.add(curUnitDist); // add is O(log(HEAP_SIZE)) operation
-        }
+      if (heap.size() < limit) {
+        heap.add(curUnitDist);
+      } else if (curUnitDist.compareTo(heap.peek()) < 0) { // peek is O(1) operation
+        // curUnitDist is closer than the max in the heap, so need to remove the max from the heap
+        // (which is on the top), and add curUnitDist to the heap
+        heap.poll(); // poll is O(log(HEAP_SIZE)) operation
+        heap.add(curUnitDist); // add is O(log(HEAP_SIZE)) operation
       }
     }
 
@@ -80,15 +76,16 @@ public class UnitManager {
         .collect(Collectors.toList());
   }
 
-  private boolean isSimilar(UnitWithDistance curUnitDist, Unit unit) {
-    if (curUnitDist.getUnit().getBeds() == unit.getBeds()) {
+  public static boolean isSimilar(Unit first, Unit second) {
+    if (first.getBeds() == second.getBeds()) {
       return true;
     }
     return false;
   }
 
-  private double calcDistance(Unit one, Unit two) {
+  public static double calcDistance(Unit first, Unit second) {
     return Math.sqrt(
-        Math.pow(one.getLat() - two.getLat(), 2.0) + Math.pow(one.getLng() - two.getLng(), 2.0));
+        Math.pow(first.getLat() - second.getLat(), 2.0)
+            + Math.pow(first.getLng() - second.getLng(), 2.0));
   }
 }

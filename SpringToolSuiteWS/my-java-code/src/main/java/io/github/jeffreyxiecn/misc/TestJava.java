@@ -11,9 +11,12 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.Vector;
@@ -246,6 +249,10 @@ public class TestJava {
     System.out.println("val2:" + val2);
     val2.append("fg");
     System.out.println("val:" + val);
+
+    List<Integer> listToSearch = new ArrayList<>();
+    System.out.println(
+        "Binary search result for an empty list: " + Collections.binarySearch(listToSearch, 1));
   }
 
   public static void changeStr(String str) {

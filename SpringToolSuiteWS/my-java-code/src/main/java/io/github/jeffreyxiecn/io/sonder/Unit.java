@@ -20,7 +20,7 @@ public class Unit {
   private int has_parking;
   private int has_pool;
   private int has_view;
-  private float lat;
-  private float lng;
+  private double lat;
+  private double lng;
   private float square_feet;
 }
