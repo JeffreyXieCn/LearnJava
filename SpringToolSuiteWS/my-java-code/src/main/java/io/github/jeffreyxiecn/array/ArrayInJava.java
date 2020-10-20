@@ -36,6 +36,28 @@ public class ArrayInJava {
 
     int[] myWeight = {43, 54, 41, 43, 48, 53, 40};
     System.out.println(findMaxDiff(myWeight));
+
+    // boolean[][] mark = new boolean[][6]; //Cannot specify an array dimension after an empty
+    // dimension
+    // boolean[][] mark = new boolean[][]; //Variable must provide either dimension expressions or
+    // an array initializer
+    boolean[][] mark = new boolean[6][];
+    System.out.println("mark.length=" + mark.length);
+    for (int i = 0; i < mark.length; i++) {
+      mark[i] = new boolean[8];
+      Arrays.fill(mark[i], false);
+    }
+
+    //    for (boolean[] row : mark) {
+    //      row = new boolean[8]; // this doesn't work, row is null, then points to something new
+    //      Arrays.fill(row, false);
+    //    }
+
+    for (boolean[] curRow : mark) {
+      System.out.println(Arrays.toString(curRow));
+    }
+
+    System.out.println(Arrays.deepToString(mark));
   }
 
   /** @param arr an array whose elements' value is between [0, 2^10); */
