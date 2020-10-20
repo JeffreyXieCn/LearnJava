@@ -253,6 +253,29 @@ public class TestJava {
     List<Integer> listToSearch = new ArrayList<>();
     System.out.println(
         "Binary search result for an empty list: " + Collections.binarySearch(listToSearch, 1));
+
+    String productNumber = "ABC 103        3846";
+    System.out.println(
+        "product number without white spaces:" + productNumber.replaceAll("\\s", ""));
+
+    // List<int> listInt = new ArrayList<>(); //Can't use primitive types as type parameter
+    List<int[]> listIntArray = new ArrayList<>(); // Can use primitive types as type parameter
+    listIntArray.add(new int[] {1, 2});
+    listIntArray.add(new int[] {3, 4});
+
+    List<Integer> listInteger = new ArrayList<>(); // Allowed
+    List<Integer[]> listIntegerArray = new ArrayList<>(); // Allowed
+
+    int[] input = {10, 8, 99, 7, 1, 5, 88, 9};
+    System.out.println(
+        "input.getClass() = "
+            + input.getClass().getCanonicalName()); // input.getClass().getCanonicalName() = int[]
+    System.out.println(
+        "input.getClass() = " + input.getClass().getName()); // input.getClass().getName() = [I
+
+    String strVar = null;
+    strVar.equals("mystring");
+    System.out.println("When NPE happens, the application won't keep running");
   }
 
   public static void changeStr(String str) {

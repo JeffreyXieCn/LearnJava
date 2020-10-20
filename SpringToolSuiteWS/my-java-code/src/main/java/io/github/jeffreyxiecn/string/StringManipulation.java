@@ -13,7 +13,25 @@ import java.util.stream.IntStream;
 
 public class StringManipulation {
 
+  public enum BodyType {
+    NOBODY,
+    JSON,
+    MULTIPART,
+    FORMDATA
+  }
+
   public static void main(String[] args) {
+    String token = "abcd1234";
+    String[] tokens = token.split(" ");
+    System.out.println("tokens:" + tokens.length);
+
+    BodyType bodyType = BodyType.MULTIPART;
+    System.out.println("Body Type: " + bodyType);
+    StringBuilder sb = new StringBuilder("mystr");
+    System.out.println("mystr:" + sb);
+
+    System.out.println(new Child());
+
     String str = "Java   is cool";
     System.out.println(new StringBuilder(str).reverse().toString());
     System.out.println(reverseWords(str));
@@ -146,5 +164,25 @@ public class StringManipulation {
     }
 
     return 0;
+  }
+}
+
+class Parent {
+
+  public String getBodyAsString() {
+    return "Parent body string";
+  }
+
+  @Override
+  public String toString() {
+    return "Body:" + getBodyAsString();
+  }
+}
+
+class Child extends Parent {
+
+  @Override
+  public String getBodyAsString() {
+    return "Child body string";
   }
 }
