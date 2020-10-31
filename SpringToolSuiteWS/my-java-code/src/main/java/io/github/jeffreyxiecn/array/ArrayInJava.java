@@ -34,9 +34,6 @@ public class ArrayInJava {
     System.out.println(Arrays.toString(arr));
     Arrays.stream(arr).forEach(System.out::println);
 
-    int[] myWeight = {43, 54, 41, 43, 48, 53, 40};
-    System.out.println(findMaxDiff(myWeight));
-
     // boolean[][] mark = new boolean[][6]; //Cannot specify an array dimension after an empty
     // dimension
     // boolean[][] mark = new boolean[][]; //Variable must provide either dimension expressions or
@@ -78,28 +75,5 @@ public class ArrayInJava {
         }
       }
     }
-  }
-
-  /*
-   *
-   * Question2: One int array A[], indicating my weight number every day.
-   * Find the max difference weight Max(Aj - Ai). Ai < Aj, i<j,
-   * A[]={43, 54, 41, 43, 48, 53, 40}
-   * return 53-41=12
-   */
-  public static int findMaxDiff(int[] arr) {
-    int maxDiff = -1;
-    int min = arr[0];
-    int curDiff;
-    for (int i = 1; i < arr.length; i++) {
-      curDiff = arr[i] - min;
-      if (curDiff > maxDiff) {
-        maxDiff = curDiff;
-      } else if (arr[i] < min) {
-        min = arr[i];
-      }
-    }
-
-    return maxDiff;
   }
 }
