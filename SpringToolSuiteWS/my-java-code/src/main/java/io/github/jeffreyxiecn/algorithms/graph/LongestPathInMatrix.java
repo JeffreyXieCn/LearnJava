@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-Q Given a matrix with numbers and ability to start at any position and move N,S,E,W to only positions with strictly higher numbers find the max path length traversed before you can go no further.
+Q Given a matrix with numbers and ability to start at any position and move N,S,E,W to only
+positions with strictly higher numbers find the max path length traversed before you can go no
+further.
 
 1 2 3 9
 5 7 8 9
