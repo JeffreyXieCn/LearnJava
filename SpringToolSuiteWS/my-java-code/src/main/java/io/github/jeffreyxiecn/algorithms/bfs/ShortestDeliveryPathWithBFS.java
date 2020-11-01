@@ -1,12 +1,17 @@
-package io.github.jeffreyxiecn.algorithms.graph;
+package io.github.jeffreyxiecn.algorithms.bfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Queue;
+/*
+ * Shortest delivery path (made of 1s) from [0][0] to point marked with 9
+ */
 public class ShortestDeliveryPathWithBFS {
+
+  private static int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
   // METHOD SIGNATURE BEGINS, THIS METHOD IS REQUIRED
   int minimumDistance(int numRows, int numColumns, List<List<Integer>> area) {
     // WRITE YOUR CODE HERE
@@ -82,5 +87,50 @@ public class ShortestDeliveryPathWithBFS {
     }
 
     return list;
+  }
+
+  public int minimumDistance2(int numRows, int numColumns, List<List<Integer>> area) {
+    boolean[][] mark = new boolean[numRows][numColumns];
+    for (boolean[] row : mark) {
+      Arrays.fill(row, false);
+    }
+
+    Queue<int[]> queue = new LinkedList<>();
+    queue.add(new int[] {0, 0});
+
+    int step = 0;
+    while (!queue.isEmpty()) {
+      int size = queue.size();
+
+      while (size-- > 0) {
+        int[] curr = queue.remove();
+        if (area.get(curr[0]).get(curr[1]) == 9) {
+          return step;
+        }
+
+        if (mark[curr[0]][curr[1]]) {
+          continue;
+        }
+
+        mark[curr[0]][curr[1]] = true;
+
+        for (int[] dir : directions) {
+          int r = curr[0] + dir[0];
+          int c = curr[1] + dir[1];
+          if (r >= 0
+              && r < numRows
+              && c >= 0
+              && c < numColumns
+              && area.get(r).get(c) != 0
+              && !mark[r][c]) {
+            queue.add(new int[] {r, c});
+          }
+        }
+      }
+
+      step++;
+    }
+
+    return step;
   }
 }
