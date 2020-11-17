@@ -273,6 +273,12 @@ public class TestJava {
     System.out.println(
         "input.getClass() = " + input.getClass().getName()); // input.getClass().getName() = [I
 
+    List<Integer> list = Arrays.asList(1, 2, 3);
+    // list.get(0) = new Integer(list.get(0) + 2);
+    // list.set(0, new Integer(list.get(0) + 4));
+    list.set(0, list.get(0) + 4);
+    System.out.println("list.get(0)=" + list.get(0));
+
     String strVar = null;
     strVar.equals("mystring");
     System.out.println("When NPE happens, the application won't keep running");

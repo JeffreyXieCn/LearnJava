@@ -11,6 +11,23 @@ This approach works because the next smallest element must be in the heap, becau
 in the heap is already the smallest one in its own column
  */
 public class KthSmallestElementInSortedMatrix0378 {
+  class Tuple implements Comparable<Tuple> {
+    int row;
+    int col;
+    int val;
+
+    public Tuple(int r, int c, int v) {
+      row = r;
+      col = c;
+      val = v;
+    }
+
+    @Override
+    public int compareTo(Tuple that) {
+      return this.val - that.val;
+    }
+  }
+
   public int kthSmallest(int[][] matrix, int k) {
     PriorityQueue<Tuple> pq = new PriorityQueue<>();
     int n = matrix.length;
@@ -64,22 +81,5 @@ public class KthSmallestElementInSortedMatrix0378 {
       }
     }
     return lo;
-  }
-}
-
-class Tuple implements Comparable<Tuple> {
-  int row;
-  int col;
-  int val;
-
-  public Tuple(int r, int c, int v) {
-    row = r;
-    col = c;
-    val = v;
-  }
-
-  @Override
-  public int compareTo(Tuple that) {
-    return this.val - that.val;
   }
 }
