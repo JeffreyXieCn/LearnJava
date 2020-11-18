@@ -1,5 +1,6 @@
 package io.github.jeffreyxiecn.algorithms.heap;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -40,12 +41,16 @@ public class MinimumFiveStarsNeeded {
     // use maxHeap so that each time the root is the product for which one more five star will gain
     // most. Set the heap's initial capacity to n because we know that's what is needed, this can
     // avoid the cost of resizing to increase capacity
-    PriorityQueue<RatingGain> pq =
-        new PriorityQueue<>(
-            n,
-            (a, b) -> {
-              return b.compareTo(a);
-            });
+    //    PriorityQueue<RatingGain> pq =
+    //        new PriorityQueue<>(
+    //            n,
+    //            (a, b) -> {
+    //              return b.compareTo(a);
+    //            });
+
+    // PriorityQueue<RatingGain> pq = new PriorityQueue<>(Comparator.<RatingGain>reverseOrder());
+    PriorityQueue<RatingGain> pq = new PriorityQueue<>(Comparator.reverseOrder());
+
     for (List<Integer> prodRate : productRatings) {
       curRating += prodRate.get(0) * 100.0f / prodRate.get(1);
       pq.add(new RatingGain(prodRate.get(0), prodRate.get(1)));
