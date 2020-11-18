@@ -2,7 +2,11 @@ package io.github.jeffreyxiecn.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class ArrayInJava {
 
@@ -55,6 +59,30 @@ public class ArrayInJava {
     }
 
     System.out.println(Arrays.deepToString(mark));
+
+    Integer[] arr1 = new Integer[] {1, 2};
+    Integer[] arr2 = new Integer[] {1, 2};
+    System.out.println("arr1:" + arr1); // arr1:[Ljava.lang.Integer;@3e3abc88 (DEC 1044036744)
+    System.out.println("arr2:" + arr2); // arr2:[Ljava.lang.Integer;@6ce253f1 (DEC 1826771953)
+    System.out.println("arr1.equals(arr2):" + arr1.equals(arr2));
+
+    System.out.println("arr1 hashcode:" + arr1.hashCode()); // 1044036744
+    System.out.println("arr2 hashcode:" + arr2.hashCode()); // 1826771953
+
+    Map<Integer[], Integer> map = new HashMap<>();
+    map.put(arr1, 1);
+    System.out.println("map contains arr1:" + map.containsKey(arr1)); // true
+    System.out.println("map contains arr2:" + map.containsKey(arr2)); // false
+
+    Set<Integer[]> set = new HashSet<>();
+    set.add(arr1);
+    System.out.println("set contains arr1:" + set.contains(arr1)); // true
+    System.out.println("set contains arr2:" + set.contains(arr2)); // false
+
+    Integer int1 = 7;
+    Integer int2 = 7;
+    System.out.println("int1 hashcode:" + int1.hashCode()); // 7
+    System.out.println("int2 hashcode:" + int2.hashCode()); // 7
   }
 
   /** @param arr an array whose elements' value is between [0, 2^10); */
