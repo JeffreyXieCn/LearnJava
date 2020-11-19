@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn.algorithms.setandmap;
+package io.github.jeffreyxiecn.algorithms.hash;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn.algorithms.setandmap;
+package io.github.jeffreyxiecn.algorithms.hash;
 
 import static org.hamcrest.Matchers.empty;
 import static org.junit.Assert.assertEquals;
@@ -9,6 +9,7 @@ import java.util.List;
 import org.javatuples.Pair;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import io.github.jeffreyxiecn.algorithms.hash.PairOfSum;
 
 class PairOfSumTest {
 

@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn.algorithms.setandmap;
+package io.github.jeffreyxiecn.algorithms.hash;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import io.github.jeffreyxiecn.algorithms.hash.SortWordsByFrequencies;
 
 class SortWordsByFrequenciesTest {
   private static String input;

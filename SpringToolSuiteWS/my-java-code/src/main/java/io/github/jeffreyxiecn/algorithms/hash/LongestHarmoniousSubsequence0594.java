@@ -30,4 +30,20 @@ public class LongestHarmoniousSubsequence0594 {
 
     return max;
   }
+
+  public int findLHS2(int[] nums) {
+    Map<Integer, Integer> countForNum = new HashMap<>();
+    for (int num : nums) {
+      countForNum.put(num, countForNum.getOrDefault(num, 0) + 1);
+    }
+    int longest = 0;
+    for (int num : countForNum.keySet()) {
+      // no need to consider key num - 1, because if that key exists, (num - 1, num) will be
+      // considered when iterating num - 1
+      if (countForNum.containsKey(num + 1)) {
+        longest = Math.max(longest, countForNum.get(num + 1) + countForNum.get(num));
+      }
+    }
+    return longest;
+  }
 }
