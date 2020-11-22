@@ -35,7 +35,7 @@ public class KthSmallestElementInSortedMatrix0378 {
       pq.add(new Tuple(0, i, matrix[0][i]));
     }
 
-    for (int i = 0; i < k - 1; i++) {
+    for (int i = 0; i < k - 1; i++) { // 小根堆，去掉 k - 1 个堆顶元素，此时堆顶元素就是第 k 的数
       Tuple t = pq.remove();
       if (t.row == n - 1) {
         continue;
@@ -64,7 +64,8 @@ public class KthSmallestElementInSortedMatrix0378 {
    two directions, we can not find a linear way to map the number and its index.
      */
   public int kthSmallest2(int[][] matrix, int k) {
-    int lo = matrix[0][0], hi = matrix[matrix.length - 1][matrix[0].length - 1] + 1; // [lo, hi)
+    int m = matrix.length, n = matrix[0].length;
+    int lo = matrix[0][0], hi = matrix[m - 1][n - 1] + 1; // [lo, hi)
     while (lo < hi) {
       int mid = lo + (hi - lo) / 2;
       int count = 0, j = matrix[0].length - 1;
@@ -78,6 +79,26 @@ public class KthSmallestElementInSortedMatrix0378 {
         lo = mid + 1;
       } else { // the kth element must be in [Lo, mid)
         hi = mid;
+      }
+    }
+    return lo;
+  }
+
+  public int kthSmallest3(int[][] matrix, int k) {
+    int m = matrix.length, n = matrix[0].length;
+    int lo = matrix[0][0], hi = matrix[m - 1][n - 1];
+    while (lo <= hi) {
+      int mid = lo + (hi - lo) / 2;
+      int cnt = 0;
+      for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n && matrix[i][j] <= mid; j++) {
+          cnt++;
+        }
+      }
+      if (cnt < k) {
+        lo = mid + 1;
+      } else {
+        hi = mid - 1;
       }
     }
     return lo;
