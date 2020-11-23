@@ -1,5 +1,6 @@
 package io.github.jeffreyxiecn.algorithms.graph;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
-public class IsBipartite {
+public class IsGraphBipartite0785 {
 
   public static void main(String[] args) {
     // TODO Auto-generated method stub
@@ -197,6 +198,115 @@ public class IsBipartite {
       }
     }
 
+    return true;
+  }
+
+  public boolean isBipartite6(int[][] graph) {
+    if (graph == null || graph.length == 0) {
+      return false;
+    }
+
+    Set<Integer> set1 = new HashSet<>();
+    Set<Integer> set2 = new HashSet<>();
+    int m = graph.length;
+    boolean[] visited = new boolean[m];
+    Arrays.fill(visited, false);
+    for (int i = 0; i < m; i++) {
+      if (visited[i]) {
+        continue;
+      }
+
+      // BFS starting from graph[i]
+      Queue<Integer> queue = new LinkedList<>();
+      queue.add(i);
+      while (!queue.isEmpty()) {
+        int cur = queue.remove();
+        // can skip if cur is added to the queue more than once and is visited previously
+        if (visited[cur]) {
+          continue;
+        }
+
+        if (!set1.contains(cur) && !set2.contains(cur)) {
+          // the first node in a new conneted sub-graph
+          set1.add(cur);
+          for (int dest : graph[cur]) {
+            set2.add(dest);
+            queue.add(dest);
+          }
+        } else if (set1.contains(cur)) {
+          // put graph[cur]'s reachable nodes to set2
+          // for(int dest : graph[cur]){
+          //     if(set1.contains(dest)){
+          //         return false;
+          //     }
+          //     set2.add(dest);
+          //     if(!visited[dest]){
+          //         queue.add(dest);
+          //     }
+          // }
+          if (!addToSetAndQueue(graph[cur], set1, set2, queue, visited)) {
+            return false;
+          }
+        } else {
+          // set2.contains(cur), put graph[cur]'s reachable nodes to set1
+          // for(int dest : graph[cur]){
+          //     if(set2.contains(dest)){
+          //         return false;
+          //     }
+          //     set1.add(dest);
+          //     if(!visited[dest]){
+          //         queue.add(dest);
+          //     }
+          // }
+          if (!addToSetAndQueue(graph[cur], set2, set1, queue, visited)) {
+            return false;
+          }
+        }
+
+        visited[cur] = true;
+      }
+    }
+
+    return true;
+  }
+
+  private boolean addToSetAndQueue(
+      int[] dests, Set<Integer> set1, Set<Integer> set2, Queue<Integer> queue, boolean[] visited) {
+    for (int dest : dests) {
+      if (set1.contains(dest)) {
+        return false;
+      }
+      set2.add(dest);
+      if (!visited[dest]) {
+        queue.add(dest);
+      }
+    }
+
+    return true;
+  }
+
+  public boolean isBipartite7(int[][] graph) {
+    int[] colors = new int[graph.length];
+    Arrays.fill(colors, -1); // -1: unclassified, 0: set1, 1: set2
+    for (int i = 0; i < graph.length; i++) { // 处理图不是连通的情况
+      if (colors[i] == -1 && !isBipartite(i, 0, colors, graph)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private boolean isBipartite(int curNode, int curColor, int[] colors, int[][] graph) {
+    if (colors[curNode] != -1) {
+      return colors[curNode] == curColor;
+    }
+    colors[curNode] = curColor;
+    for (int nextNode : graph[curNode]) {
+      // DFS to color my neighbour to opposite color
+      if (!isBipartite(nextNode, 1 - curColor, colors, graph)) {
+        return false;
+      }
+    }
     return true;
   }
 }
