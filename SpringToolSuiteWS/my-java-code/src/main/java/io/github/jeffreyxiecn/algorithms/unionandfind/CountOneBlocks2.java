@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn.algorithms.disjointset;
+package io.github.jeffreyxiecn.algorithms.unionandfind;
 
 public class CountOneBlocks2 {
   // add a top and left padding of zeros to the original matrix

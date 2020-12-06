@@ -1,4 +1,4 @@
-package io.github.jeffreyxiecn.algorithms.disjointset;
+package io.github.jeffreyxiecn.algorithms.unionandfind;
 
 import java.util.Arrays;
 import java.util.HashSet;

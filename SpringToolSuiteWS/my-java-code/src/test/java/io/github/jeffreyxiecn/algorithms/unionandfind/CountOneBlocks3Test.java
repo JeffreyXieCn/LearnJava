@@ -1,8 +1,9 @@
-package io.github.jeffreyxiecn.algorithms.disjointset;
+package io.github.jeffreyxiecn.algorithms.unionandfind;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import io.github.jeffreyxiecn.algorithms.unionandfind.CountOneBlocks3;
 
 class CountOneBlocks3Test {
 
