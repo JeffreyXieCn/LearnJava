@@ -1,8 +1,11 @@
 package io.github.jeffreyxiecn.exception;
 
 import java.io.IOException;
+import org.slf4j.Logger;
 
 public class TestException {
+  private static final Logger log = org.slf4j.LoggerFactory.getLogger(TestException.class);
+
   public static int assignment() {
     int number = 1;
     try {
@@ -37,6 +40,10 @@ public class TestException {
       // TODO Auto-generated catch block
       System.out.println("Catched IOException from Child2");
     }
+
+    Exception e = new IllegalArgumentException("Need string, but found integer");
+    log.info("An exception happened: {}", e);
+    System.out.println("A log after the log.info()");
   }
 }
 
@@ -55,8 +62,14 @@ class Parent {
 // }
 
 class Child2 extends Parent {
+  private static final Logger log = org.slf4j.LoggerFactory.getLogger(TestException.class);
+
   @Override
   public void msg() {
     System.out.println("Child msg()");
+
+    Exception e = new IllegalArgumentException("Need string, but found integer");
+    log.info("An exception happened: {}", e);
+    System.out.println("A log after the log.info()");
   }
 }
