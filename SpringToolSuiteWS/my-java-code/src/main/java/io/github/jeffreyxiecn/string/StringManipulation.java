@@ -1,6 +1,5 @@
 package io.github.jeffreyxiecn.string;
 
-import java.nio.ByteOrder;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -41,13 +40,6 @@ public class StringManipulation {
     System.out.println("mystr:" + sb);
 
     System.out.println(new Child());
-
-    ByteOrder byteOrder = ByteOrder.nativeOrder();
-    if (byteOrder.equals(ByteOrder.LITTLE_ENDIAN)) {
-      System.out.println("This JVM is running on little_endian platform");
-    } else {
-      System.out.println("This JVM is running on big_endian platform");
-    }
   }
 }
 
