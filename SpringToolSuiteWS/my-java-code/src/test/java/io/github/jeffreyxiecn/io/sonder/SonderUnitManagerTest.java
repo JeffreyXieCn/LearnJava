@@ -2,6 +2,7 @@ package io.github.jeffreyxiecn.io.sonder;
 
 // import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 // import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
@@ -71,8 +72,13 @@ class SonderUnitManagerTest {
   private void verifySimilarResults(List<Unit> first, List<Unit> second, Unit unit) {
     assertEquals(first.size(), second.size());
     for (int i = 0; i < first.size(); i++) {
+      System.out.println("Comparing " + i);
+      System.out.println("first :" + first.get(i));
+      System.out.println("second:" + second.get(i));
       assertTrue(UnitManager.isSimilar(first.get(i), unit));
       assertTrue(UnitManager.isSimilar(second.get(i), unit));
+      assertNotEquals(first.get(i).getId(), unit.getId());
+      assertNotEquals(second.get(i).getId(), unit.getId());
       assertEquals(
           UnitManager.calcDistance(first.get(i), unit),
           UnitManager.calcDistance(second.get(i), unit),

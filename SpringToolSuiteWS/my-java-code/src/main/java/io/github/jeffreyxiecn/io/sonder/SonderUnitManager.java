@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 public class SonderUnitManager {
@@ -80,6 +81,27 @@ public class SonderUnitManager {
   }
 
   private void findNearbyUnits(Unit unit, List<UnitWithDistance> unitsWithDist) {
+    PriorityQueue<UnitWithDistance> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
+    for (int i = 0; i < MAX_LIMIT && i < unitsWithDist.size(); i++) {
+      maxHeap.add(unitsWithDist.get(i));
+    }
+
+    for (int j = MAX_LIMIT; j < unitsWithDist.size(); j++) {
+      if (unitsWithDist.get(j).getDistance() < maxHeap.element().getDistance()) {
+        // this unit j is closer to target unit
+        maxHeap.remove();
+        maxHeap.add(unitsWithDist.get(j));
+      }
+    }
+
+    List<UnitWithDistance> result = new ArrayList<>(maxHeap);
+    Collections.sort(result);
+
+    nearbyUnits.put(unit.getId(), result);
+  }
+
+  private void findNearbyUnits2(Unit unit, List<UnitWithDistance> unitsWithDist) {
     List<UnitWithDistance> result = new ArrayList<>();
     for (UnitWithDistance currUnitWithDist : unitsWithDist) {
       insertIntoOrderedList(result, currUnitWithDist);
