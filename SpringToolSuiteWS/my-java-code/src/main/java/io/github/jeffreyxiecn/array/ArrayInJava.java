@@ -83,6 +83,16 @@ public class ArrayInJava {
     Integer int2 = 7;
     System.out.println("int1 hashcode:" + int1.hashCode()); // 7
     System.out.println("int2 hashcode:" + int2.hashCode()); // 7
+
+    // binary search
+    int[] arr3 = {0, 1, 2, 3};
+    System.out.println(Arrays.binarySearch(arr3, 1)); // 1
+    System.out.println(Arrays.binarySearch(arr3, 0)); // 0
+    System.out.println(Arrays.binarySearch(arr3, 3)); // 3
+    System.out.println(Arrays.binarySearch(arr3, -1)); // -1 = - (0) - 1
+    System.out.println(Arrays.binarySearch(arr3, 4)); // -5 = -(4) - 1
+    System.out.println(Arrays.binarySearch(arr3, 0, 2, 1)); // 1
+    System.out.println(Arrays.binarySearch(arr3, 0, 2, 2)); // -3 = -(2) - 1
   }
 
   /** @param arr an array whose elements' value is between [0, 2^10); */
