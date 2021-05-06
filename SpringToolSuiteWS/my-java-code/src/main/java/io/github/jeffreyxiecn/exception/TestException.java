@@ -44,6 +44,14 @@ public class TestException {
     Exception e = new IllegalArgumentException("Need string, but found integer");
     log.info("An exception happened: {}", e);
     System.out.println("A log after the log.info()");
+
+    int a = 5;
+    int b = 0;
+    try {
+      int c = a / b;
+    } catch (ArithmeticException ae) {
+      System.out.println("Catched RuntimeException");
+    }
   }
 }
 
