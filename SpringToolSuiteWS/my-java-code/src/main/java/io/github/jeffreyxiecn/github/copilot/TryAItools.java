@@ -111,5 +111,14 @@ This line ends the `print2` method.
         return true;
     }
 
+    // Calculate the greatest common divisor (GCD) of two numbers
+    // using Euclid's algorithm
+    static int calculateGreatestCommonDivisor(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return calculateGreatestCommonDivisor(b, a % b);
+    }
+
 
 }
