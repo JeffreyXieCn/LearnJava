@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BasicStream {
     public static void main(String[] args) {
@@ -17,5 +18,6 @@ public class BasicStream {
         // another way
         int maxBirthYear = Arrays.stream(logs).map(log -> log[0]).mapToInt(v -> v).max().orElseThrow();
         System.out.println("birth range: [" + minBirthYear + ", " + maxBirthYear + "]");
+        System.out.println(Arrays.toString(IntStream.range(10, 15).toArray())); //[10, 11, 12, 13, 14]
     }
 }
