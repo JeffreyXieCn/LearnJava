@@ -2,6 +2,8 @@ package com.luv2code.springboot.cruddemo.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +22,7 @@ import com.luv2code.springboot.cruddemo.service.EmployeeService;
 @RestController
 @RequestMapping("/api")
 public class EmployeeRestController {
-
+  private static final Logger log = LoggerFactory.getLogger(EmployeeRestController.class);
   private EmployeeService employeeService;
 
   @Autowired // this is optional if there is one and only one constructor
@@ -31,11 +33,13 @@ public class EmployeeRestController {
   // expose "/employees" and return list of employees
   @GetMapping("/employees")
   public List<Employee> findAll() {
+    log.info("Find all employees");
     return employeeService.findAll();
   }
 
   @GetMapping("/employees/{employeeId}")
   public Employee findById(@PathVariable int employeeId) {
+    log.info("Find employee with id: {}", employeeId);
     Employee theEmployee = employeeService.findById(employeeId);
     if (theEmployee == null) {
       throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
@@ -48,6 +52,7 @@ public class EmployeeRestController {
   @PostMapping("/employees")
   @ResponseStatus(HttpStatus.CREATED)
   public Employee addEmployee(@RequestBody Employee theEmployee) {
+    log.info("Adding employee: {}", theEmployee);
     if (theEmployee.getFirstName().length() < 2) {
       throw new RuntimeException("First name should have at least 2 characters");
     }
@@ -67,6 +72,7 @@ public class EmployeeRestController {
   // add mapping for PUT /employees - update existing employee
   @PutMapping("/employees")
   public Employee updateEmployee(@RequestBody Employee theEmployee) {
+    log.info("Updating employee: {}", theEmployee);
     employeeService.save(theEmployee);
 
     return theEmployee;
@@ -74,6 +80,7 @@ public class EmployeeRestController {
 
   @DeleteMapping("/employees/{employeeId}")
   public String deleteById(@PathVariable int employeeId) {
+    log.info("Deleting employee with id: {}", employeeId);
     Employee theEmployee = employeeService.findById(employeeId);
     if (theEmployee == null) {
       throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
