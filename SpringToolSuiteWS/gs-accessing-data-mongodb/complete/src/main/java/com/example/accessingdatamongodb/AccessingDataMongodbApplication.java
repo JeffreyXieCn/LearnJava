@@ -5,9 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import com.mongodb.DBObject;
 
 @SpringBootApplication
 public class AccessingDataMongodbApplication implements CommandLineRunner {
@@ -33,6 +37,11 @@ public class AccessingDataMongodbApplication implements CommandLineRunner {
 		repository.save(new Customer("John", "Doe"));
 		repository.save(new Customer("Jane", "Doe"));
 		repository.save(new Customer("James", "Webber"));
+
+		Customer jeff = new Customer("Jeffrey", "Xie");
+		jeff.addProgrammingLanguage("Java", "Advanced");
+		jeff.addProgrammingLanguage("ASP.NET", "Basic");
+		repository.save(jeff);
 
 		// fetch all customers
 		System.out.println("Customers found with findAll():");
