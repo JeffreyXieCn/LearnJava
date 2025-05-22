@@ -1,6 +1,8 @@
 package io.github.jeffreyxiecn.datatypes;
 
 import java.nio.ByteOrder;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 public class BasicDataType {
 
@@ -48,6 +50,16 @@ public class BasicDataType {
         System.out.println("nybbles:" + nybbles); // 37
         long bytes = 0b11010010_01101001_10010100_10010010;
         System.out.println("bytes:" + bytes); // -764832622
+
+        Instant timestamp = Instant.now();
+        System.out.println("timestamp:" + timestamp);
+        System.out.println("timestamp (truncated to seconds):" + timestamp.truncatedTo(ChronoUnit.SECONDS));
+
+        //timestamp = Instant.parse("2025-04-21T12:46:21.000+02:00");
+        //timestamp = Instant.parse("2025-03-28T03:10:17+01:00");
+        timestamp = Instant.parse("2025-04-21T12:46:21.567+02:00");
+        System.out.println("timestamp:" + timestamp);
+        System.out.println("timestamp (truncated to seconds):" + timestamp.truncatedTo(ChronoUnit.SECONDS));
 
     }
 }
